@@ -2,7 +2,9 @@
 	<?php 
 	session_start();
 	require 'koneksi.php';
-	if($_SESSION['status']!="login"){
-		header("location:login.php");
+	if (isset($_SESSION['status'])) {
+		if($_SESSION['status']!="login"){
+			// header("location:login.php");
+		}
 	}
 	?>
