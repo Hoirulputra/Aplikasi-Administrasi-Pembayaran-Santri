@@ -1,5 +1,13 @@
 <?php
-require 'cek-sesi.php';
+  require 'cek-sesi.php';
+  if (isset($_COOKIE['logged_akses'])) {
+    if ($_COOKIE['logged_akses'] != 'admin') {
+      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
+      echo "Anda tidak berhak mengakses halaman ini <br/>";
+      echo "<a href='${url}'>Kembali</a>";
+      die;
+    } 
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,13 +45,6 @@ require 'cek-sesi.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-<?php
-if ($_SESSION['id'] == 1) {
-	$lihat = 'none';
-} else {
-	$lihat = 'hidden';
-};
-?>
 
 
 
@@ -56,7 +57,7 @@ if ($_SESSION['id'] == 1) {
 			 </div>
 			 
 			 <div class="float-right">
-<button type="button" class="btn btn-success btn-sm" style="margin:5px; visibility:<?=$lihat?>" data-toggle="modal" data-target="#myModalTambah"><i class="fa fa-plus"> Tambah Admin</i></button><br>			 
+<button type="button" class="btn btn-success btn-sm" style="margin:5px;" data-toggle="modal" data-target="#myModalTambah"><i class="fa fa-plus"> Tambah Admin</i></button><br>			 
 			  
 			  </div>
 			  
@@ -76,6 +77,7 @@ if ($_SESSION['id'] == 1) {
                       <th>Nama</th>
                       <th>Username</th>
                       <th>Password</th>
+                      <th>Hak Akses</th>
 					  <th>Aksi</th>
                     </tr>
                   </thead>
@@ -83,14 +85,8 @@ if ($_SESSION['id'] == 1) {
                   </tfoot>
                   <tbody>
 				  <?php 
-				  $id = $_SESSION['id'];
-if ($id == 1) {
-// $query = mysqli_query($koneksi,"SELECT * FROM admin");
-$query = mysqli_query($koneksi,"SELECT * FROM admin where (hak_akses = 'admin' or hak_akses = 'bendahara')");
-} else {
-$query = mysqli_query($koneksi,"SELECT * FROM admin where (hak_akses = 'admin' or hak_akses = 'bendahara')");  
-// $query = mysqli_query($koneksi,"SELECT * FROM admin where id_admin = '$id'");
-}
+$query = mysqli_query($koneksi,"SELECT * FROM admin where (hak_akses = 'admin' or hak_akses = 'bendahara')"); 
+
 while ($data = mysqli_fetch_assoc($query)) 
 {
 ?>
@@ -99,6 +95,7 @@ while ($data = mysqli_fetch_assoc($query))
                       <td><?=$data['nama']?></td>
                       <td><?=$data['username']?></td>
                       <td><?=$data['pass']?></td>
+                      <td><?=$data['hak_akses']?></td>
 					  <td style="text-align:center;">
                     <!-- Button untuk modal -->
 <a href="#" type="button" class=" fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id_admin']; ?>"></a>

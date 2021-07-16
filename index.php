@@ -1,5 +1,5 @@
 <?php
-require 'cek-sesi.php';
+  require 'cek-sesi.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +69,7 @@ $santribulanan = mysqli_num_rows($santribulanan);
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
           </div>
-
+  
           <!-- Content Row -->
           
 		  
@@ -78,7 +78,7 @@ $santribulanan = mysqli_num_rows($santribulanan);
 		  <div class="mb-12">
 		  <div class='alert alert-info alert-dismissible fade show text-left'>
 				<button type='button' class='close' data-dismiss='alert'>&times;</button>
-				Selamat datang <?=$_SESSION['nama']?>, pada halaman Admin Aplikasi Administrasi Pembayaran PP Hidayatul Mubtadiin Turen.
+				Selamat datang <?=((isset($logged_user)) ? $logged_user['nama'] : 'Tidak ada data profil')?>, pada halaman Admin Aplikasi Administrasi Pembayaran PP Hidayatul Mubtadiin Turen.
 			</div>
 			</div>
 		  <div class="row">

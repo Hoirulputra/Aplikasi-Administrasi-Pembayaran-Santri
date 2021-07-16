@@ -1,12 +1,14 @@
 <?php
   require 'cek-sesi.php';
   if (isset($_COOKIE['logged_akses'])) {
-    if ($_COOKIE['logged_akses'] != 'admin' && $_COOKIE['logged_akses'] != 'bendahara') {
+    if ($_COOKIE['logged_akses'] != 'santri') {
       $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
       echo "Anda tidak berhak mengakses halaman ini <br/>";
       echo "<a href='${url}'>Kembali</a>";
       die;
-    } 
+    }
+    $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" .$logged_user['santri_id']. "'");
+    $santri = mysqli_fetch_assoc($query);
   }
 ?>
 <!DOCTYPE html>
@@ -51,41 +53,15 @@
           <div class="card shadow mb-4">
             <div class="card-header">
 			<div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Pembayaran Uang Pendaftaran Santri Baru</h3>
-			 </div>
+              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Pembayaran Uang Bulanan</h3>
+			 </div>			 
 
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Nomor Induk Santri</th>
-                      <th>Nama Santri</th>
-                      <th>Jenis Kelamin</th>
-                      <th>Alamat</th>
-					  <th>Status</th>
-					  <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-				  <?php 
-$query = mysqli_query($koneksi,"SELECT * FROM santri WHERE status='Baru'");
-$no = 1;
-while ($data = mysqli_fetch_assoc($query)) 
-{
-?>
-                    <tr>
-                      <td><?=$data['id']?></td>
-                      <td><?=$data['nama_santri']?></td>
-                      <td><?=$data['jenis_kelamin']?></td>
-                      <td><?=$data['alamat']?></td>
-					  <td style="text-align:center;"><span class="btn btn-warning btn-sm">Santri <?=$data['status']?></span></td>
-					  <td style="text-align:center;">
-                    <!-- Button untuk modal -->
-<a title="Bayar Uang Pendaftaran Baru" href="#" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>">Bayar Uang Pendaftaran Baru</a>
-</td>
-</tr>
+                <h1>Ini halaman laporan pembayaran santri: <?=$santri['nama_santri']?></h1>
+                <h3>Manggil data santri sing login bisa langsung pakai <strong class="text-danger">$santri['kolom_tabel']</strong></h3>
+                <h4>Edit halaman ini di <span class="text-danger">/laporan-santri.php</span></h4>
+            </div>
 <!-- Modal Edit Mahasiswa-->
 <div class="modal fade" id="myModal<?php echo $data['id']; ?>" role="dialog">
 <div class="modal-dialog">
@@ -93,11 +69,11 @@ while ($data = mysqli_fetch_assoc($query))
 <!-- Modal content-->
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title">Bayar Uang Pendaftaran Santri Baru</h4>
+<h4 class="modal-title">Bayar Uang Bulanan</h4>
 <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body">
-<form role="form" action="tambah-pendaftaran-baru.php" method="get">
+<form role="form" action="tambah-uang-bulanan.php" method="get">
 
 <?php
 $id = $data['id']; 
@@ -132,8 +108,9 @@ while ($row = mysqli_fetch_array($query_edit)) {
 												<option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
 											</select>
 <input type="hidden" name="daftar_ulang" value="<?php echo $row['daftar_ulang']; ?>">
-<input type="hidden" name="uang_bulanan" value="<?php echo $row['uang_bulanan']; ?>">
+<input type="hidden" name="uang_bulanan" value="Sudah">
 </div>
+
 <div class="form-group">
 <label>Nomor Induk Santri</label>
 <input type="text" value="<?php echo $row['id']; ?>" readonly required class="form-control">   
@@ -150,42 +127,42 @@ while ($row = mysqli_fetch_array($query_edit)) {
 </div>
 
 <div class="form-group">
-<label>Tahun</label>
-<input autocomplete="off" type="number" required name="tahun_pembayaran" class="form-control">   
-</div>
-
-<div class="form-group">
-<label>Semester</label>
-											<select name="semester_pembayaran" class="form-control" required>
+<label>Untuk Bulan</label>
+											<select name="bulan_pembayaran" class="form-control" required>
 												<option value="">-- Silahkan Pilih --</option>
-												<option value="Ganjil">Ganjil</option>
-												<option value="Genap">Genap</option>
+												<option value="Januari">Januari</option>
+												<option value="Februari">Februari</option>
+												<option value="Maret">Maret</option>
+												<option value="April">April</option>
+												<option value="Mei">Mei</option>
+												<option value="Juni">Juni</option>
+												<option value="Juli">Juli</option>
+												<option value="Agustus">Agustus</option>
+												<option value="September">September</option>
+												<option value="Oktober">Oktober</option>
+												<option value="November">November</option>
+												<option value="Desember">Desember</option>
 											</select>
 </div>
 
 <div class="form-group">
-<label>Nominal Uang Pendaftaran</label>
-<input type="number" name="uang_pendaftaran_baru" class="form-control" required>   
+<label>Tahun</label>
+<input type="number" name="tahun_pembayaran" autocomplete="off" class="form-control" required>   
 </div>
 
 <div class="form-group">
-<label>Nominal Uang Sewa Lemari</label>
-<input type="number" name="uang_sewa_lemari" class="form-control" required>   
+<label>Nominal Uang Makan</label>
+<input type="number" name="uang_makan" class="form-control" required>   
 </div>
 
 <div class="form-group">
-<label>Nominal Uang Seragam Pondok</label>
-<input type="number" name="uang_seragam_pondok" class="form-control" required>   											
+<label>Nominal Uang Asrama</label>
+<input type="number" name="uang_asrama" class="form-control" required>   
 </div>
 
 <div class="form-group">
-<label>Nominal Uang Pembangunan</label>
-<input type="number" name="uang_pembangunan" class="form-control" required>      
-</div>
-
-<div class="form-group">
-<label>Nominal Uang Ujian</label>
-<input type="number" name="uang_ujian" class="form-control" required>         
+<label>Nominal Uang Listrik</label>
+<input type="number" name="uang_listrik" class="form-control" required>   
 </div>
 
 
@@ -193,10 +170,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <button type="submit" class="btn btn-success">Bayar</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
 </div>
-<?php 
-}
-//mysql_close($host);
-?>  
+
        
 </form>
 </div>
