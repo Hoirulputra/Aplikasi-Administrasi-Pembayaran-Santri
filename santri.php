@@ -1,5 +1,13 @@
 <?php
-require 'cek-sesi.php';
+  require 'cek-sesi.php';
+  if (isset($_COOKIE['logged_akses'])) {
+    if ($_COOKIE['logged_akses'] != 'admin') {
+      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
+      echo "Anda tidak berhak mengakses halaman ini <br/>";
+      echo "<a href='${url}'>Kembali</a>";
+      die;
+    } 
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">

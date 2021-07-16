@@ -16,14 +16,17 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
+      <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
       <li class="nav-item active">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+      <?php endif; ?>
 
     <div id="nav_santri">
 		<!-- Divider -->
+    <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
       <hr class="sidebar-divider">
 
       <!-- Heading -->
@@ -38,9 +41,13 @@
           <span>Data Santri</span>
         </a>
       </li>
+    <?php endif; ?>
+    
 	  
 <div id="nav_pembayaran">
 <!-- Divider -->
+<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+
       <hr class="sidebar-divider">
 
       <!-- Heading -->
@@ -100,11 +107,13 @@
           <span>Uang Bulanan</span>
         </a>
       </li>
-    
-	  <!-- Divider -->
+      <!-- Divider -->
+      <?php endif;?>
       <hr class="sidebar-divider">
 
       <!-- Heading -->
+      <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+
       <div class="sidebar-heading">
         Laporan
       </div>
@@ -116,8 +125,11 @@
           <span>Data Laporan Keuangan</span>
         </a>
       </li>
+      <?php endif?>
 	  <div id="nav_pengguna">
 	  <!-- Divider -->
+    <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
+
       <hr class="sidebar-divider">
 
       <!-- Heading -->
@@ -135,31 +147,32 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+    <?php endif?>
+
+    <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
+
+    <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Pengaturan
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="laporan-santri.php">
+          <i class="fas fa-clipboard"></i>
+          <span>Laporan Pembayaran</span>
+        </a>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
+    <?php endif; ?>
 
     </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-<script>
-    if("<?= $_SESSION['hak_akses']; ?>"=="santri"){
-    document.getElementById("nav_santri").style.display  = "none";
-    }
-    if("<?= $_SESSION['hak_akses']; ?>"=="santri"){
-    document.getElementById("nav_pembayaran").style.display  = "none";
-     }
-      if("<?= $_SESSION['hak_akses']; ?>"=="santri"){
-    document.getElementById("nav_pengguna").style.display  = "none";
-    if("<?= $_SESSION['hak_akses']; ?>"=="bendahara"){
-    document.getElementById("nav_santri").style.display  = "none";
-    }
-   if("<?= $_SESSION['hak_akses']; ?>"=="bendahara"){
-    document.getElementById("nav_pengguna").style.display  = "none";
-    }
-
-</script>
