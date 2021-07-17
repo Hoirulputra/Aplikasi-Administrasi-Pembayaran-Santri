@@ -88,7 +88,8 @@ $total3 = 0;
 $total4 = 0;
 $total5 = 0;
 $totalmasuk = 0;
-while ($row = mysqli_fetch_array($query)) {
+while ($row = mysqli_fetch_array($query)) 
+{
 
 $total1 += $row['total1'];         
 $total2 += $row['total2'];         
@@ -98,7 +99,6 @@ $total5 += $row['total5'];
 $totalmasuk= $total1+$total2+$total3+$total4+$total5;        
 }
 ?>		
-
 
 
 <table class="table table-bordered" width="100%" cellspacing="0">

@@ -24,7 +24,7 @@
       </li>
       <?php endif; ?>
 
-    <div id="nav_santri">
+    <!-- <div id="nav_santri"> -->
 		<!-- Divider -->
     <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
       <hr class="sidebar-divider">
@@ -44,7 +44,7 @@
     <?php endif; ?>
     
 	  
-<div id="nav_pembayaran">
+<!-- <div id="nav_pembayaran"> -->
 <!-- Divider -->
 <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 
@@ -83,7 +83,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Daftar Pembayaran 
+        Pembayaran Santri
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -126,7 +126,7 @@
         </a>
       </li>
       <?php endif?>
-	  <div id="nav_pengguna">
+	  <!-- <div id="nav_pengguna"> -->
 	  <!-- Divider -->
     <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
 

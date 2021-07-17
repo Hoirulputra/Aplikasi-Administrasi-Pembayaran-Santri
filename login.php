@@ -105,7 +105,14 @@
               <div class="form-group">
                 <input required type="password" name="password" autocomplete="off" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
               </div>
+              <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Ingat akun</label> 
+                       </div>
+              </div>
               <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Masuk">
+              <input type="button" name="button" class="btn btn-info btn-user btn-block" data-toggle="modal" data-target="#exampleModal" value="Daftar">
               <?php 
                 if (isset($logged_failed)) {
               ?>
@@ -134,7 +141,6 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
 
 
 
