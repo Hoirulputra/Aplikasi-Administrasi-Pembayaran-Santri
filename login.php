@@ -14,7 +14,7 @@
           break;
 
         case 'santri':
-          header('location:laporan-santri.php');
+          header('location:santri.php');
           break;
       }
       die;
@@ -45,7 +45,7 @@
               break;
     
             case 'santri':
-              header('location:laporan-santri.php');
+              header('location:santri.php');
               break;
           }
           die;
@@ -69,9 +69,9 @@
   <meta name="author" content="">
 
   <title>Login</title>
-  <link href='logo.jpg' rel='icon' type='image/x-icon' />
+  <link href='logo.png' rel='icon' type='image/x-icon' />
 
-  <link href='logo.jpg' rel='icon' type='image/x-icon' />
+  <link href='logo.png' rel='icon' type='image/x-icon' />
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

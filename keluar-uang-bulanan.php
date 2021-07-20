@@ -1,13 +1,5 @@
 <?php
   require 'cek-sesi.php';
-  if (isset($_COOKIE['logged_akses'])) {
-    if ($_COOKIE['logged_akses'] != 'admin' && $_COOKIE['logged_akses'] != 'bendahara') {
-      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-      echo "Anda tidak berhak mengakses halaman ini <br/>";
-      echo "<a href='${url}'>Kembali</a>";
-      die;
-    } 
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,9 +48,10 @@
 			 
 			 <div class="float-right">
 
-			  
+			  <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 			  <a style="margin:5px" href="tambah-keluar-uang-bulanan.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data Pengeluaran</a>
 			  </div>
+        <?php endif; ?>
 
             </div>
             <div class="card-body">
@@ -70,10 +63,12 @@
                       <th>Nominal</th>
 					  <th>Jenis</th>
                       <th>Keterangan</th>
+            <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 					  <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
+            <?php endif; ?>
 				  <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM keluar_uang_bulanan");
 $no = 1;
@@ -87,13 +82,15 @@ while ($data = mysqli_fetch_assoc($query))
 					  <td><?=$data['jenis']?></td>
                       <td><?=$data['ket_pengeluaran']?></td>
 					  <td style="width:15%;text-align:center;">
-                    <!-- Button untuk modal -->
+<!-- Button untuk modal -->
+<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 <a title="Edit" href="#" type="button" class="fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>"></a>
 <a title="Hapus" href="hapus-keluar-uang-bulanan.php?id=<?=$data['id'];?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="fa fa-times-circle btn btn-danger btn-sm"></a>
 </td>
 </tr>
-
+<?php endif; ?>
 <!-- Modal Edit Mahasiswa-->
+<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 <div class="modal fade" id="myModal<?php echo $data['id']; ?>" role="dialog">
 <div class="modal-dialog">
 
@@ -105,14 +102,14 @@ while ($data = mysqli_fetch_assoc($query))
 </div>
 <div class="modal-body">
 <form role="form" action="proses-edit-keluar-uang-bulanan.php" method="get">
-
+<?php endif; ?>
 <?php
 $id = $data['id']; 
 $query_edit = mysqli_query($koneksi,"SELECT * FROM keluar_uang_bulanan WHERE id='$id'");
 //$result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_array($query_edit)) {  
 ?>
-
+<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 <input type="hidden" value="<?php echo $row['id']; ?>" class="form-control" name="id" readonly required>
 
 <div class="form-group">
@@ -148,7 +145,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <button type="submit" class="btn btn-success">Simpan Perubahan</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
 </div> 
-    
+<?php endif; ?>
 
 <?php 
 }

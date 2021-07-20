@@ -12,7 +12,7 @@
 				break;
 
 			case 'santri':
-				return 'laporan-santri.php';
+				return 'santri.php';
 				break;
 		}
 	}

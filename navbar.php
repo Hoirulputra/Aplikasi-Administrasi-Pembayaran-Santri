@@ -9,7 +9,7 @@
           <!-- Topbar Search -->
 		
 
-<?php require 'user.php'; ?>
+<?php require 'header.php'; ?>
 
         </nav>
         <!-- End of Topbar -->

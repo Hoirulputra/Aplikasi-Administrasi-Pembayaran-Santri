@@ -1,5 +1,13 @@
 <?php
-require 'cek-sesi.php';
+  require 'cek-sesi.php';
+  if (isset($_COOKIE['logged_akses'])) {
+    if ($_COOKIE['logged_akses'] != 'admin') {
+      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
+      echo "Anda tidak berhak mengakses halaman ini <br/>";
+      echo "<a href='${url}'>Kembali</a>";
+      die;
+    } 
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,21 +45,18 @@ require 'cek-sesi.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="pendaftaran-ulang.php" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-				</div>
-				<br>
 
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header">
 			<div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Daftar Santri Sudah Daftar Ulang</h3>
+              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Daftar Data Santri</h3>
 			 </div>
+			 
+			 <div class="float-right">			  
+			  <a style="margin:5px" href="tambah-santri.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data Santri</a>
+			  </div>
 
             </div>
             <div class="card-body">
@@ -63,28 +68,32 @@ require 'cek-sesi.php';
                       <th>Nama Santri</th>
                       <th>Jenis Kelamin</th>
                       <th>Alamat</th>
-					  <th>Keterangan</th>
+					  <th>Tahun/Semester Masuk</th>					  
 					  <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
 				  <?php 
-$query = mysqli_query($koneksi,"SELECT * FROM santri WHERE status='Lama' AND daftar_ulang='Sudah'");
+$query = mysqli_query($koneksi,"SELECT * FROM santri");
 $no = 1;
 while ($data = mysqli_fetch_assoc($query)) 
 {
 ?>
+
                     <tr>
                       <td><?=$data['id']?></td>
                       <td><?=$data['nama_santri']?></td>
                       <td><?=$data['jenis_kelamin']?></td>
                       <td><?=$data['alamat']?></td>
-					  <td style="text-align:center;"><span class="btn btn-success btn-sm"><?=$data['daftar_ulang']?></span></td>
-					  <td style="text-align:center;">
+					  <td><?=$data['tahun_masuk']?>/<?=$data['semester']?></td>
+					  <td style="width:20%;text-align:center;">
                     <!-- Button untuk modal -->
-<a title="Kembalikan Jadi Belum Bayar" href="#" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>">Kembalikan Jadi Belum Bayar</a>
+<a title="Lihat" href="lihat-santri.php?id=<?=$data['id'];?>" class="fa fa-eye btn btn-primary btn-sm"></a>
+<a title="Edit" href="#" type="button" class="fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>"></a>
+<a title="Hapus" href="hapus-santri.php?id=<?=$data['id'];?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="fa fa-times-circle btn btn-danger btn-sm"></a>
 </td>
 </tr>
+
 <!-- Modal Edit Mahasiswa-->
 <div class="modal fade" id="myModal<?php echo $data['id']; ?>" role="dialog">
 <div class="modal-dialog">
@@ -92,11 +101,11 @@ while ($data = mysqli_fetch_assoc($query))
 <!-- Modal content-->
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title">Kembalikan Jadi Belum Bayar</h4>
+<h4 class="modal-title">Ubah Data Santri</h4>
 <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body">
-<form role="form" action="proses-sudah-daftar-ulang.php" method="get">
+<form role="form" action="proses-edit-santri.php" method="get">
 
 <?php
 $id = $data['id']; 
@@ -104,43 +113,75 @@ $query_edit = mysqli_query($koneksi,"SELECT * FROM santri WHERE id='$id'");
 //$result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_array($query_edit)) {  
 ?>
-<div style="display:none !important">
-<input type="text" class="form-control" name="id" value="<?php echo $row['id']; ?>" readonly>
+
+<input type="hidden" name="daftar_ulang" value="<?php echo $row['daftar_ulang']; ?>">
+<input type="hidden" name="uang_bulanan" value="<?php echo $row['uang_bulanan']; ?>">
+
+<div class="form-group">
+<label>Nomor Induk Santri</label>
+<input type="number" class="form-control" name="id" value="<?php echo $row['id']; ?>" readonly>
+</div>
+
+<div class="form-group">
+<label>Nama Santri</label>
 <input type="text" name="nama_santri" class="form-control" value="<?php echo $row['nama_santri']; ?>">      
-<?php $jenis=$row['jenis_kelamin']; ?>
+</div>
+
+<div class="form-group">
+<label>Jenis Kelamin</label>
+											<?php $jenis=$row['jenis_kelamin']; ?>
 											<select name="jenis_kelamin" class="form-control" required>
 												<option value="">-- Silahkan Pilih --</option>
 												<option value="Pria" <?php echo ($jenis == 'Pria') ? "selected": "" ?>>Pria</option>
 												<option value="Wanita" <?php echo ($jenis == 'Wanita') ? "selected": "" ?>>Wanita</option>
 											</select>
-<input type="text" name="alamat" class="form-control" value="<?php echo $row['alamat']; ?>">   
-<input type="text" name="ayah_santri" class="form-control" value="<?php echo $row['ayah_santri']; ?>">
-<input type="text" name="ibu_santri" class="form-control" value="<?php echo $row['ibu_santri']; ?>">
-<input type="text" name="tahun_masuk" class="form-control" value="<?php echo $row['tahun_masuk']; ?>">
-<?php $semester=$row['semester']; ?>
+</div>
+
+<div class="form-group">
+<label>Alamat</label>
+<input type="text" name="alamat" class="form-control" value="<?php echo $row['alamat']; ?>">      
+</div>
+
+<div class="form-group">
+<label>Nama Ayah Santri</label>
+<input type="text" name="ayah_santri" class="form-control" value="<?php echo $row['ayah_santri']; ?>">      
+</div>
+
+<div class="form-group">
+<label>Nama Ibu Santri</label>
+<input type="text" name="ibu_santri" class="form-control" value="<?php echo $row['ibu_santri']; ?>">      
+</div>
+
+<div class="form-group">
+<label>Tahun Masuk</label>
+<input type="number" name="tahun_masuk" class="form-control" value="<?php echo $row['tahun_masuk']; ?>">      
+</div>
+
+<div class="form-group">
+<label>Semester</label>
+
+											<?php $semester=$row['semester']; ?>
 											<select name="semester" class="form-control" required>
 												<option value="">-- Silahkan Pilih --</option>
 												<option value="Ganjil" <?php echo ($semester == 'Ganjil') ? "selected": "" ?>>Ganjil</option>
 												<option value="Genap" <?php echo ($semester == 'Genap') ? "selected": "" ?>>Genap</option>
 											</select>
+</div>
 
-<?php $status=$row['status']; ?>
+
+<div class="form-group">
+<label>Status Santri</label>
+
+											<?php $status=$row['status']; ?>
 											<select name="status" class="form-control" required>
 												<option value="">-- Silahkan Pilih --</option>
 												<option value="Baru" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
 												<option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
 											</select>
-<input type="hidden" name="daftar_ulang" value="Belum">
-<input type="hidden" name="uang_bulanan" value="<?php echo $row['uang_bulanan']; ?>">
 </div>
-
-<div class="form-group">
-<label>Apakah anda yakin ingin menjadikan santri ini belum bayar ? Pengembalian santri menjadi belum bayar adalah untuk pembayaran uang daftar ulang pada priode berikutnya.</label>
-</div>
-
 
 <div class="modal-footer">  
-<button type="submit" class="btn btn-danger">Kembalikan</button>
+<button type="submit" class="btn btn-success">Simpan Perubahan</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
 </div>
 <?php 
@@ -154,6 +195,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
 
 </div>
 </div>
+
 
 
 <?php               

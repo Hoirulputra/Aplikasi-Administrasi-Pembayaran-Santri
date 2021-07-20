@@ -5,7 +5,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +12,7 @@
   <meta name="author" content="">
 
   <title>Admin</title>
-  <link href='logo.jpg' rel='icon' type='image/x-icon'/>
+  <link href='logo.png' rel='icon' type='image/x-icon'/>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +56,7 @@ $santribulanan = mysqli_num_rows($santribulanan);
           <!-- Topbar Search -->
 
 
-<?php require 'user.php'; ?>
+<?php require 'header.php'; ?>
 
         </nav>
         <!-- End of Topbar -->

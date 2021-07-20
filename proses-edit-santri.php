@@ -19,11 +19,11 @@ $query = mysqli_query($koneksi,"UPDATE santri SET nama_santri='$nama' , jenis_ke
 
 if ($query) {
  echo "<script>alert('Data Berhasil di Edit')</script>
-	<meta http-equiv='refresh' content='0 url=santri.php'>"; 
+	<meta http-equiv='refresh' content='0 url=data-santri.php'>"; 
 }
 else{
  echo "<script>alert('Data Gagal di Edit')</script>
-	<meta http-equiv='refresh' content='0 url=santri.php'>"; 
+	<meta http-equiv='refresh' content='0 url=data-santri.php'>"; 
 }
 
 //mysql_close($host);

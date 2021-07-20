@@ -19,11 +19,11 @@ $query = mysqli_query($koneksi,"INSERT INTO `santri` (`id`, `nama_santri`, `jeni
 
 if ($query) {
  echo "<script>alert('Data Berhasil di Tambah')</script>
-	<meta http-equiv='refresh' content='0 url=santri.php'>";
+	<meta http-equiv='refresh' content='0 url=data-santri.php'>";
 }
 else{
 	 echo "<script>alert('Data Gagal di Tambah')</script>
-	<meta http-equiv='refresh' content='0 url=santri.php'>";
+	<meta http-equiv='refresh' content='0 url=data-santri.php'>";
 }
 
 //mysql_close($host);

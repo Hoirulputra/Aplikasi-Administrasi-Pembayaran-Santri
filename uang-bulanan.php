@@ -21,7 +21,7 @@
   <meta name="author" content="">
 
   <title>Admin</title>
-  <link href='logo.jpg' rel='icon' type='image/x-icon'/>
+  <link href='logo.png' rel='icon' type='image/x-icon'/>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -90,7 +90,7 @@ while ($data = mysqli_fetch_assoc($query))
 <a title="Bayar Uang Bulanan" href="#" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>">Bayar Uang Bulanan</a>
 </td>
 </tr>
-<!-- Modal Edit Mahasiswa-->
+<!-- Modal Edit Santri-->
 <div class="modal fade" id="myModal<?php echo $data['id']; ?>" role="dialog">
 <div class="modal-dialog">
 

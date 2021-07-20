@@ -5,12 +5,14 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
+      <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-chart-pie"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Administrasi Pembayaran</div>
       </a>
+      <?php endif; ?>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -24,7 +26,6 @@
       </li>
       <?php endif; ?>
 
-    <!-- <div id="nav_santri"> -->
 		<!-- Divider -->
     <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
       <hr class="sidebar-divider">
@@ -36,7 +37,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="santri.php">
+        <a class="nav-link collapsed" href="data-santri.php">
           <i class="fas fa-fw fa-users"></i>
           <span>Data Santri</span>
         </a>
@@ -44,9 +45,8 @@
     <?php endif; ?>
     
 	  
-<!-- <div id="nav_pembayaran"> -->
 <!-- Divider -->
-<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara' || $_COOKIE['logged_akses'] == 'santri') : ?>
 
       <hr class="sidebar-divider">
 
@@ -76,9 +76,11 @@
           <span>Uang Bulanan</span>
         </a>
       </li>
+    <?php endif; ?>
 
 	  
     <!-- Divider -->
+    <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
       <hr class="sidebar-divider">
 
       <!-- Heading -->
@@ -107,13 +109,13 @@
           <span>Uang Bulanan</span>
         </a>
       </li>
+        <?php endif; ?>
+      
       <!-- Divider -->
-      <?php endif;?>
+      <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
-
       <div class="sidebar-heading">
         Laporan
       </div>
@@ -126,7 +128,7 @@
         </a>
       </li>
       <?php endif?>
-	  <!-- <div id="nav_pengguna"> -->
+
 	  <!-- Divider -->
     <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
 
@@ -160,7 +162,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="laporan-santri.php">
+        <a class="nav-link collapsed" href="santri.php">
           <i class="fas fa-clipboard"></i>
           <span>Laporan Pembayaran</span>
         </a>
