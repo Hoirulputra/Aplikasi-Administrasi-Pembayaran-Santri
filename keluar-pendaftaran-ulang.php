@@ -13,7 +13,7 @@
   <meta name="author" content="">
 
   <title>Admin</title>
-  <link href='logo.jpg' rel='icon' type='image/x-icon'/>
+  <link href='logo.png' rel='icon' type='image/x-icon'/>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -50,24 +50,30 @@
 
 			  <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 			  <a style="margin:5px" href="tambah-keluar-pendaftaran-ulang.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data Pengeluaran</a>
-			  </div>
         <?php endif; ?>
+			  </div>
+       
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+
+                      <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
                       <th>Tanggal Pengeluaran</th>
-                      <th>Nominal</th>
-					  <th>Jenis</th>
+                      <?php endif; ?>
+                      
+					           <th>Jenis</th>
                       <th>Keterangan</th>
+                      <th>Nominal</th>
             <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 					  <th>Aksi</th>
+            <?php endif; ?>
                     </tr>
                   </thead>
                   <tbody>
-            <?php endif; ?>
+            
 				  <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM keluar_pendaftaran_ulang");
 $no = 1;
@@ -76,11 +82,15 @@ while ($data = mysqli_fetch_assoc($query))
 ?>
 
                     <tr>
+                      <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
                       <td><?=$data['tanggal_pembayaran']?></td>
-                      <td>Rp. <?php echo number_format($data['nominal_pengeluaran'], 0, ',', '.'); ?></td>
-					  <td><?=$data['jenis']?></td>
+                       <?php endif; ?>
+					             <td><?=$data['jenis']?></td>
                       <td><?=$data['ket_pengeluaran']?></td>
-					  <td style="width:15%;text-align:center;">
+                      <td>Rp. <?php echo number_format($data['nominal_pengeluaran'], 0, ',', '.'); ?></td>
+					           <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+                     <td style="width:15%;text-align:center;">
+                    <?php endif; ?>
 <!-- Button untuk modal -->
 <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 <a title="Edit" href="#" type="button" class="fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>"></a>
@@ -115,11 +125,8 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <label>Tanggal Pengeluaran</label>
 <input type="date" value="<?php echo $row['tanggal_pembayaran']; ?>" readonly required name="tanggal_pembayaran"  value="<?php echo $row['tanggal_pembayaran']; ?>" class="form-control">   
 </div>
+<?php endif; ?>
 
-<div class="form-group">
-<label>Nominal Uang Pengeluaran</label>
-<input type="number" value="<?php echo $row['nominal_pengeluaran']; ?>" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
-</div>
 
 <div class="form-group">
 <label>Jenis</label>
@@ -138,7 +145,11 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <input type="text" value="<?php echo $row['ket_pengeluaran']; ?>" name="ket_pengeluaran" class="form-control" autocomplete="off" required>      
 </div>
 
-
+<div class="form-group">
+<label>Nominal Uang Pengeluaran</label>
+<input type="number" value="<?php echo $row['nominal_pengeluaran']; ?>" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
+</div>
+<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 <div class="modal-footer">  
 <button type="submit" class="btn btn-success">Simpan Perubahan</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>

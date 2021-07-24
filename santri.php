@@ -1,12 +1,12 @@
 <?php
   require 'cek-sesi.php';
-  // // if (isset($_COOKIE['logged_akses'])) {
-  // //   if ($_COOKIE['logged_akses'] != 'santri') {
-  // //     $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-  // //     echo "Anda tidak berhak mengakses halaman ini <br/>";
-  // //     echo "<a href='${url}'>Kembali</a>";
-  // //     die;
-  // //   }
+  // if (isset($_COOKIE['logged_akses'])) {
+  //   if ($_COOKIE['logged_akses'] != 'santri') {
+  //     $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
+  //     echo "Anda tidak berhak mengakses halaman ini <br/>";
+  //     echo "<a href='${url}'>Kembali</a>";
+  //     die;
+  //   }
   //   $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" .$logged_user['id_santri']. "'");
   //   $santri = mysqli_fetch_assoc($query);
   // }
@@ -47,12 +47,11 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-               -->
-              <!-- DataTales Example -->
+            <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Pembayaran Uang Bulanan</h3>
+              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Bukti Pembayaran Santri</h3>
 			 </div>			
             </div>
              <tr>
@@ -71,7 +70,7 @@ while ($data = mysqli_fetch_assoc($query))
             <td><?=$data['tahun_masuk']?>/<?=$data['semester']?></td>
             <td style="width:20%;text-align:center;">
                     <!-- Button untuk modal -->
-<a title="Lihat" href="lihat-santri.php?id=<?=$data['id'];?>" class="fa fa-eye btn btn-primary btn-sm"></a>
+<a href="lihat-santri.php?id=<?=$data['id'];?>" class="fa fa-eye btn btn-primary btn-sm"></a>
 </td>
 </tr>
 

@@ -31,7 +31,7 @@ $query = mysqli_query($koneksi,"INSERT INTO `pendaftaran_baru` (`id`, `id_santri
 
 if ($query) {
  echo "<script>alert('Data Berhasil di Tambah')</script>
-	<meta http-equiv='refresh' content='0 url=pendaftaran-baru.php'>";
+	<meta http-equiv='refresh' content='0 url=pendaftaran-ulang.php'>";
 }
 else{
  echo "<script>alert('Data Gagal di Tambah')</script>

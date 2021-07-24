@@ -13,7 +13,7 @@ require 'cek-sesi.php';
   <meta name="author" content="">
 
   <title>Admin</title>
-  <link href='logo.jpg' rel='icon' type='image/x-icon'/>
+  <link href='logo.png' rel='icon' type='image/x-icon'/>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,30 +44,34 @@ require 'cek-sesi.php';
             <div class="card-header">
 			<div class="float-left">
               <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Daftar Pengeluaran Pendaftaran Santri Baru</h3>
-			 </div>
-			 
+			  
+       </div>
 			 <div class="float-right">
-
-			   <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+        <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 			  <a style="margin:5px" href="tambah-keluar-pendaftaran-baru.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data Pengeluaran</a>
+        <?php endif; ?>
 			  </div>
-          <?php endif; ?>
             </div>
             <div class="card-body">
+               
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  
                   <thead>
+                    <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
                     <tr>
                       <th>Tanggal Pengeluaran</th>
-                      <th>Nominal</th>
-					  <th>Jenis</th>
+                      <?php endif; ?>
+                     
+					           <th>Jenis</th>
                       <th>Keterangan</th>
+                       <th>Nominal</th>
             <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>                  
 					  <th>Aksi </th>
+             <?php endif; ?>
                       </tr>
                       </thead>
                       <tbody>
-            <?php endif; ?>
 
 				  <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM keluar_pendaftaran_baru");
@@ -77,13 +81,15 @@ while ($data = mysqli_fetch_assoc($query))
 ?>
 
                     <tr>
+                       <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>   
                       <td><?=$data['tanggal_pembayaran']?></td>
-                      <td>
-					  Rp. <?php echo number_format($data['nominal_pengeluaran'], 0, ',', '.'); ?>
-					  </td>
-					  <td><?=$data['jenis']?></td>
+                       <?php endif; ?>
+					           <td><?=$data['jenis']?></td>
                       <td><?=$data['ket_pengeluaran']?></td>
-					  <td style="width:15%;text-align:center;">
+                      <td>Rp. <?php echo number_format($data['nominal_pengeluaran'], 0, ',', '.'); ?></td>
+					           <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+                     <td style="width:15%;text-align:center;">
+                    <?php endif; ?>
 <!-- Button untuk modal -->
 <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 <a title="Edit" href="#" type="button" class="fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>"></a>
@@ -122,11 +128,6 @@ while ($row = mysqli_fetch_array($query_edit)) {
 </div>
 
 <div class="form-group">
-<label>Nominal Uang Pengeluaran</label>
-<input type="number" value="<?php echo $row['nominal_pengeluaran']; ?>" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
-</div>
-
-<div class="form-group">
 <label>Jenis</label>
 
 											<?php $jenis=$row['jenis']; ?>
@@ -144,6 +145,11 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <div class="form-group">
 <label>Keterangan</label>
 <input type="text" value="<?php echo $row['ket_pengeluaran']; ?>" name="ket_pengeluaran" class="form-control" autocomplete="off" required>      
+</div>
+
+<div class="form-group">
+<label>Nominal Uang Pengeluaran</label>
+<input type="number" value="<?php echo $row['nominal_pengeluaran']; ?>" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
 </div>
 
 

@@ -46,7 +46,7 @@
     
 	  
 <!-- Divider -->
-<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara' || $_COOKIE['logged_akses'] == 'santri') : ?>
+<?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 
       <hr class="sidebar-divider">
 
@@ -157,14 +157,43 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Pengaturan
+        Rincian Pembayaran Santri
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="keluar-pendaftaran-baru.php">
+          <i class="fas fa-fw fa-minus-circle"></i>
+          <span>Pendaftaran Baru</span>
+        </a>
+      </li>
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="keluar-pendaftaran-ulang.php">
+          <i class="fas fa-fw fa-minus-circle"></i>
+          <span>Pendaftaran Ulang</span>
+        </a>
+      </li>
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="keluar-uang-bulanan.php">
+          <i class="fas fa-fw fa-minus-circle"></i>
+          <span>Uang Bulanan</span>
+        </a>
+      </li>
+
+    <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Laporan
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="santri.php">
           <i class="fas fa-clipboard"></i>
-          <span>Laporan Pembayaran</span>
+          <span>Bukti Pembayaran Santri</span>
         </a>
 
       <!-- Sidebar Toggler (Sidebar) -->
