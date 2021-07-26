@@ -13,6 +13,14 @@
         <div class="sidebar-brand-text mx-3">Administrasi Pembayaran</div>
       </a>
       <?php endif; ?>
+       <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="santri.php">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-chart-pie"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Pembayaran Santri</div>
+      </a>
+      <?php endif; ?>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -191,7 +199,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="santri.php">
+        <a class="nav-link collapsed" href="lihat-santri.php">
           <i class="fas fa-clipboard"></i>
           <span>Bukti Pembayaran Santri</span>
         </a>

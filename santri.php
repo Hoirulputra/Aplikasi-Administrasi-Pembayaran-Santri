@@ -22,7 +22,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin</title>
+  <title>Santri</title>
   <link href='logo.png' rel='icon' type='image/x-icon'/>
 
   <!-- Custom fonts for this template -->
@@ -44,17 +44,27 @@
       <div id="content">
 
 <?php require 'navbar.php'; ?>
-
+           
+         
+  
         <!-- Begin Page Content -->
         <div class="container-fluid">
+           <!-- Content Row -->
+      <div class="mb-12">
+      <div class='alert alert-info alert-dismissible fade show text-left'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Selamat datang <?=((isset($logged_user)) ? $logged_user['nama'] : 'Tidak ada data profil')?>, pada halaman Aplikasi Administrasi Pembayaran PP Hidayatul Mubtadiin Turen.
+      </div>
+      </div>
+      <div class="row">
             <!-- DataTales Example -->
-          <div class="card shadow mb-4">
+         <!--  <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="float-left">
               <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Bukti Pembayaran Santri</h3>
 			 </div>			
             </div>
-             <tr>
+             <tr> -->
          <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM santri");
 $no = 1;
@@ -62,18 +72,18 @@ while ($data = mysqli_fetch_assoc($query))
 {
 ?>
 
-                    <tr>
+                  <!--   <tr>
                       <td><?=$data['id']?></td>
                       <td><?=$data['nama_santri']?></td>
                       <td><?=$data['jenis_kelamin']?></td>
                       <td><?=$data['alamat']?></td>
             <td><?=$data['tahun_masuk']?>/<?=$data['semester']?></td>
-            <td style="width:20%;text-align:center;">
+            <td style="width:20%;text-align:center;"> -->
                     <!-- Button untuk modal -->
-<a href="lihat-santri.php?id=<?=$data['id'];?>" class="fa fa-eye btn btn-primary btn-sm"></a>
+<!-- <a href="lihat-santri.php?id=<?=$data['id'];?>" class="fa fa-eye btn btn-primary btn-sm"></a>
 </td>
 </tr>
-
+ -->
 <?php
 $id = $data['id']; 
 $query_edit = mysqli_query($koneksi,"SELECT * FROM santri WHERE id='$id'");
@@ -89,7 +99,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
 } 
 ?>
 
-        </div> -->
+        </div>
         <!-- /.container-fluid -->
 
       </div>
