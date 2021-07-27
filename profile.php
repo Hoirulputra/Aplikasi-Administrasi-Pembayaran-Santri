@@ -1,13 +1,13 @@
 <?php
-  require 'cek-sesi.php';
-  if (isset($_COOKIE['logged_akses'])) {
-    if ($_COOKIE['logged_akses'] != 'admin') {
-      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-      echo "Anda tidak berhak mengakses halaman ini <br/>";
-      echo "<a href='${url}'>Kembali</a>";
-      die;
-    } 
+require 'cek-sesi.php';
+if (isset($_COOKIE['logged_akses'])) {
+  if ($_COOKIE['logged_akses'] != 'admin') {
+    $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
+    echo "Anda tidak berhak mengakses halaman ini <br/>";
+    echo "<a href='${url}'>Kembali</a>";
+    die;
   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
   <meta name="author" content="">
 
   <title>Admin</title>
-  <link href='logo.png' rel='icon' type='image/x-icon'/>
+  <link href='logo.png' rel='icon' type='image/x-icon' />
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,196 +36,213 @@
 </head>
 
 <body id="page-top">
-<?php require 'koneksi.php'; ?>
-<?php require 'sidebar.php'; ?>
-      <!-- Main Content -->
-      <div id="content">
+  <?php require 'koneksi.php'; ?>
+  <?php require 'sidebar.php'; ?>
+  <!-- Main Content -->
+  <div id="content">
 
-<?php require 'navbar.php'; ?>
+    <?php require 'navbar.php'; ?>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-
-
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header">
-              
-			  <div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Data Pengguna</h3>
-			 </div>
-			 
-			 <div class="float-right">
-<button type="button" class="btn btn-success btn-sm" style="margin:5px;" data-toggle="modal" data-target="#myModalTambah"><i class="fa fa-plus"> Tambah Admin</i></button><br>			 
-			  
-			  </div>
-			  
-            </div>
-			
-			
-			
-			
-			
-			
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Nama</th>
-                      <th>Username</th>
-                      <th>Password</th>
-                      <th>Hak Akses</th>
-					  <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                  </tfoot>
-                  <tbody>
-				  <?php 
-$query = mysqli_query($koneksi,"SELECT * FROM admin where (hak_akses = 'admin' or hak_akses = 'bendahara')"); 
-
-while ($data = mysqli_fetch_assoc($query)) 
-{
-?>
-                    <tr>
-                      <td><?=$data['id_admin']?></td>
-                      <td><?=$data['nama']?></td>
-                      <td><?=$data['username']?></td>
-                      <td><?=$data['pass']?></td>
-                      <td><?=$data['hak_akses']?></td>
-					  <td style="text-align:center;">
-                    <!-- Button untuk modal -->
-<a href="#" type="button" class=" fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id_admin']; ?>"></a>
-</td>
-</tr>
-<!-- Modal Edit Mahasiswa-->
-<div class="modal fade" id="myModal<?php echo $data['id_admin']; ?>" role="dialog">
-<div class="modal-dialog">
-
-<!-- Modal content-->
-<div class="modal-content">
-<div class="modal-header">
-<h4 class="modal-title">Ubah Data Admin</h4>
-<button type="button" class="close" data-dismiss="modal">&times;</button>
-</div>
-<div class="modal-body">
-<form role="form" action="proses-edit-admin.php" method="get">
-
-<?php
-$id = $data['id_admin']; 
-$query_edit = mysqli_query($koneksi,"SELECT * FROM admin WHERE id_admin='$id'");
-//$result = mysqli_query($conn, $query);
-while ($row = mysqli_fetch_array($query_edit)) {  
-?>
-
-
-<input type="hidden" name="id_admin" value="<?php echo $row['id_admin']; ?>">
-
-<div class="form-group">
-<label>ID</label>
-<input type="text" name="id" class="form-control" value="<?php echo $row['id_admin']; ?>" disabled>      
-</div>
-
-<div class="form-group">
-<label>Nama</label>
-<input type="text" name="nama" class="form-control" value="<?php echo $row['nama']; ?>">      
-</div>
-
-
-<div class="form-group">
-<label>Username</label>
-<input type="text" name="username" class="form-control" value="<?php echo $row['username']; ?>">      
-</div>
-
-<div class="form-group">
-<label>Password</label>
-<input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">      
-</div>
-
-<div class="form-group">
-<label>Alamat</label>
-<input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">      
-</div>
-
-<div class="form-group">
-<label>no_hp</label>
-<input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">      
-</div>
-
-<div class="modal-footer">  
-<button type="submit" class="btn btn-success">Ubah</button>
-<button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-</div>
-<?php 
-}
-//mysql_close($host);
-?>  
-       
-</form>
-</div>
-</div>
-
-</div>
-</div>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
 
 
- <!-- Modal -->
-  <div id="myModalTambah" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+        <div class="card-header">
 
-      <!-- konten modal-->
-      <div class="modal-content">
-        <!-- heading modal -->
-        <div class="modal-header">
-          <h4 class="modal-title">Tambah Admin</h4>
-		    <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <!-- body modal -->
-		<form action="tambah-admin.php" method="get">
-        <div class="modal-body">
-		Nama 
-         <input type="text" class="form-control" name="nama">
-		Username
-         <input type="text" class="form-control" name="username">
-		Password
-         <input type="password" class="form-control" name="pass">
-        </div>
-        <!-- footer modal -->
-        <div class="modal-footer">
-		<button type="submit" class="btn btn-success" >Tambah</button>
-		</form>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-<?php               
-} 
-?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <div class="float-left">
+            <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Data Pengguna</h3>
           </div>
-		  
+
+          <div class="float-right">
+            <button type="button" class="btn btn-success btn-sm" style="margin:5px;" data-toggle="modal" data-target="#myModalTambah"><i class="fa fa-plus"> Tambah Admin</i></button><br>
+
+          </div>
 
         </div>
-        <!-- /.container-fluid -->
 
+
+
+
+
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Hak Akses</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tfoot>
+              </tfoot>
+              <tbody>
+                <?php
+                $query = mysqli_query($koneksi, "SELECT * FROM admin");
+                while ($data = mysqli_fetch_assoc($query)) {
+                ?>
+                  <tr>
+                    <td><?= $data['id_admin'] ?></td>
+                    <td><?= $data['nama'] ?></td>
+                    <td><?= $data['username'] ?></td>
+                    <td><?= $data['pass'] ?></td>
+                    <td><?= $data['hak_akses'] ?></td>
+                    <td style="text-align:center;">
+                      <!-- Button untuk modal -->
+                      <a href="#" type="button" class=" fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id_admin']; ?>"></a>
+                    </td>
+                  </tr>
+                  <!-- Modal Edit Mahasiswa-->
+                  <div class="modal fade" id="myModal<?php echo $data['id_admin']; ?>" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Ubah Data Admin</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <form role="form" action="proses-edit-admin.php" method="get">
+
+                            <?php
+                            $id = $data['id_admin'];
+                            $query_edit = mysqli_query($koneksi, "SELECT * FROM admin WHERE id_admin='$id'");
+                            //$result = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_array($query_edit)) {
+                            ?>
+
+
+                              <input type="hidden" name="id_admin" value="<?php echo $row['id_admin']; ?>">
+
+                              <div class="form-group">
+                                <label>ID</label>
+                                <input type="text" name="id" class="form-control" value="<?php echo $row['id_admin']; ?>" disabled>
+                              </div>
+
+                              <div class="form-group">
+                                <label>Nama</label>
+                                <input type="text" name="nama" class="form-control" value="<?php echo $row['nama']; ?>">
+                              </div>
+
+
+                              <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" value="<?php echo $row['username']; ?>">
+                              </div>
+
+                              <div class="form-group">
+                                <label>Password</label>
+                                <input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">
+                              </div>
+
+                              <div class="form-group">
+                                <label>Alamat</label>
+                                <input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">
+                              </div>
+
+                              <div class="form-group">
+                                <label>no_hp</label>
+                                <input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">
+                              </div>
+
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Ubah</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                              </div>
+                            <?php
+                            }
+                            //mysql_close($host);
+                            ?>
+
+                          </form>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                <?php
+                }
+                ?>
+
+                <!-- Modal -->
+                <div id="myModalTambah" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- konten modal-->
+                    <div class="modal-content">
+                      <!-- heading modal -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">Tambah Admin</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <!-- body modal -->
+                      <form action="tambah-admin.php" method="get">
+                        <div class="modal-body">
+                          Nama
+                          <input type="text" class="form-control" name="nama">
+                          Username
+                          <input type="text" class="form-control" name="username">
+                          Password
+                          <input type="password" class="form-control" name="pass">
+                          Hak Akses
+                          <select name="hak_akses" class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="bendahara">Bendahara</option>
+                            <option value="santri">Santri</option>
+                          </select>
+                          <div class="santri-form-wrapper">
+                            Santri
+                            <select name="santri_id" class="form-control">
+                              <?php
+                              $query = mysqli_query($koneksi, "SELECT * FROM santri ORDER BY nama_santri ASC");
+                              while ($santri = mysqli_fetch_assoc($query)) {
+                              ?>
+                                <option value="<?= $santri['id'] ?>"><?= $santri['nama_santri'] ?></option>
+                              <?php
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- footer modal -->
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-success">Tambah</button>
+                      </form>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    </div>
+                  </div>
+
+                </div>
+          </div>
+
+
+
+          </tbody>
+          </table>
+        </div>
       </div>
-      <!-- End of Main Content -->
-
-<?php require 'footer.php'?>
-
     </div>
-    <!-- End of Content Wrapper -->
+
+
+  </div>
+  <!-- /.container-fluid -->
+
+  </div>
+  <!-- End of Main Content -->
+
+  <?php require 'footer.php' ?>
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -236,7 +253,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
   </a>
 
   <!-- Logout Modal-->
-<?php require 'logout-modal.php';?>
+  <?php require 'logout-modal.php'; ?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -254,7 +271,15 @@ while ($row = mysqli_fetch_array($query_edit)) {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-
+  <script>
+    $(".santri-form-wrapper").hide()
+    $("[name='hak_akses']").change(function(e) {
+      e.preventDefault();
+      value = $(this).val()
+      if (value == 'santri')
+        $(".santri-form-wrapper").show()
+    })
+  </script>
 </body>
 
 </html>
