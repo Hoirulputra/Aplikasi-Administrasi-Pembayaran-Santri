@@ -23,9 +23,9 @@ $tgl_pembayaran = $_GET['tanggal_pembayaran'];
 $tahun_pembayaran = $_GET['tahun_pembayaran'];
 $semester_pembayaran = $_GET['semester_pembayaran'];
 
+
 //query update
 $query = mysqli_query($koneksi,"INSERT INTO `pendaftaran_ulang` (`id`, `id_santri`, `uang_pendaftaran_ulang`, `uang_ujian`, `tanggal_pembayaran`, `tahun_pembayaran`, `semester_pembayaran`) VALUES (null, '$id', '$uang_pendaftaran_ulang', '$uang_ujian', '$tgl_pembayaran', '$tahun_pembayaran', '$semester_pembayaran')");
-
 if ($query) {
  echo "<script>alert('Data Berhasil di Tambah')</script>
 	<meta http-equiv='refresh' content='0 url=pendaftaran-ulang.php'>";

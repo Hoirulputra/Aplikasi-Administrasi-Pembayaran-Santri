@@ -84,10 +84,10 @@ while ($data1 = mysqli_fetch_assoc($query))
 ?>
 
 				   <tr>
-                      <td><?=$data1['tanggal_pembayaran']?></td>
-                      <td><?=$data1['tahun_pembayaran']?>/<?=$data1['semester_pembayaran']?></td>
-                      <td>Rp. <?php echo number_format($data1['uang_pendaftaran_baru'], 0, ',', '.'); ?></td>
-                      <td>Rp. <?php echo number_format($data1['uang_sewa_lemari'], 0, ',', '.'); ?></td>
+            <td><?=$data1['tanggal_pembayaran']?></td>
+            <td><?=$data1['tahun_pembayaran']?>/<?=$data1['semester_pembayaran']?></td>
+            <td>Rp. <?php echo number_format($data1['uang_pendaftaran_baru'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_sewa_lemari'], 0, ',', '.'); ?></td>
 					  <td>Rp. <?php echo number_format($data1['uang_seragam_pondok'], 0, ',', '.'); ?></td>
 					  <td>Rp. <?php echo number_format($data1['uang_pembangunan'], 0, ',', '.'); ?></td>
 					  <td>Rp. <?php echo number_format($data1['uang_ujian'], 0, ',', '.'); ?></td>

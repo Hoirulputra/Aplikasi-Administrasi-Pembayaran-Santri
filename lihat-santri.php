@@ -1,5 +1,15 @@
 <?php
 require 'cek-sesi.php';
+if (isset($_COOKIE['logged_akses'])) {
+  if ($_COOKIE['logged_akses'] != 'santri') {
+    $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
+    echo "Anda tidak berhak mengakses halaman ini <br/>";
+    echo "<a href='${url}'>Kembali</a>";
+    die;
+  }
+  $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" . $logged_user['santri_id'] . "'");
+  $santri = mysqli_fetch_assoc($query);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,13 +22,13 @@ require 'cek-sesi.php';
   <meta name="description" content="">
   <meta name="author" content="">
 
-    <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
-  <title>Admin</title>
+  <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+    <title>Admin</title>
   <?php endif; ?>
-   <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
-  <title>Santri</title>
+  <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
+    <title>Santri</title>
   <?php endif; ?>
-  <link href='logo.png' rel='icon' type='image/x-icon'/>
+  <link href='logo.png' rel='icon' type='image/x-icon' />
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,147 +43,147 @@ require 'cek-sesi.php';
 </head>
 
 <body id="page-top">
-<?php require 'koneksi.php'; ?>
-<?php require 'sidebar.php'; ?>
-      <!-- Main Content -->
-      <div id="content">
+  <?php require 'koneksi.php'; ?>
+  <?php require 'sidebar.php'; ?>
+  <!-- Main Content -->
+  <div id="content">
 
-<?php require 'navbar.php'; ?>
+    <?php require 'navbar.php'; ?>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-				</div>
-				<br>
-		
-<?php
-$id = $_GET['id']; 
-$query_edit = mysqli_query($koneksi,"SELECT * FROM santri WHERE id='$id'");
-//$result = mysqli_query($conn, $query);
-while ($row = mysqli_fetch_array($query_edit)) {  
-?>
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data <?php echo $row['nama_santri']; ?></h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-borderless">
-				<tbody>
-				<tr>
-				<td width="30%"><b>Nomor Induk Santri</b></td>
-				<td><?php echo $row['id']; ?></td>
-				</tr>
-				
-				<tr>
-				<td><b>Nama</b></td>
-				<td><?php echo $row['nama_santri']; ?></td>
-				</tr>
-				
-				<tr>
-				<td><b>Jenis Kelamin</b></td>
-				<td><?php echo $row['jenis_kelamin']; ?></td>
-				</tr>
-				
-				<tr>
-				<td><b>Alamat</b></td>
-				<td><?php echo $row['alamat']; ?></td>
-				</tr>
-				
-				<tr>
-				<td><b>Nama Ayah</b></td>
-				<td><?php echo $row['ayah_santri']; ?></td>
-				</tr>
-				
-				<tr>
-				<td><b>Nama Ibu</b></td>
-				<td><?php echo $row['ibu_santri']; ?></td>
-				</tr>
-				
-				<tr>
-				<td><b>Tahun/Semester Masuk</b></td>
-				<td><?php echo $row['tahun_masuk']; ?>/<?php echo $row['semester']; ?></td>
-				</tr>
-				
-				<tr>
-				<td><b>Status Santri</b></td>
-				<td><?php echo $row['status']; ?></td>
-				</tr>
-				</tbody>
-				</table>
-              </div>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+      <div class="clearfix">
+        <div class="float-right">
+          <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+        </div>
+
+      </div>
+      <br>
+
+      <?php
+      $id = $santri['id'];
+      $query_edit = mysqli_query($koneksi, "SELECT * FROM santri WHERE id='$id'");
+      //$result = mysqli_query($conn, $query);
+      while ($row = mysqli_fetch_array($query_edit)) {
+      ?>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data <?php echo $row['nama_santri']; ?></h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td width="30%"><b>Nomor Induk Santri</b></td>
+                    <td><?php echo $row['id']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Nama</b></td>
+                    <td><?php echo $row['nama_santri']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Jenis Kelamin</b></td>
+                    <td><?php echo $row['jenis_kelamin']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Alamat</b></td>
+                    <td><?php echo $row['alamat']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Nama Ayah</b></td>
+                    <td><?php echo $row['ayah_santri']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Nama Ibu</b></td>
+                    <td><?php echo $row['ibu_santri']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Tahun/Semester Masuk</b></td>
+                    <td><?php echo $row['tahun_masuk']; ?>/<?php echo $row['semester']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <td><b>Status Santri</b></td>
+                    <td><?php echo $row['status']; ?></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-  
-
-<div class="card shadow mb-4">
-            <div class="card-body">
-              
-			  
-			  
-			  <div class="float-left">
-              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Pendaftaran Santri Baru</h5>
-			 </div>
-			 
-			 <div class="float-right">
-			  <a title="Lihat Riwayat" href="lihat-santri-pendaftaran-baru.php?id=<?=$row['id'];?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
-			  </div>
-			  
-            </div>
-			  </div>
-			  
-<div class="card shadow mb-4">
-            <div class="card-body">
-              
-			  
-			  <div class="float-left">
-              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Pendaftaran Ulang</h5>
-			 </div>
-			 
-			 <div class="float-right">
-			  <a title="Lihat Riwayat" href="lihat-santri-pendaftaran-ulang.php?id=<?=$row['id'];?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
-			  </div>
-            </div>
-			  </div>
-			  
-
-<div class="card shadow mb-4">
-            <div class="card-body">
-              
-			  
-			  <div class="float-left">
-              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Bulanan</h5>
-			 </div>
-			 
-			 <div class="float-right">
-			  <a title="Lihat Riwayat" href="lihat-santri-uang-bulanan.php?id=<?=$row['id'];?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
-			  </div>
-            </div>
-			  </div>
-			  
-			 
-			  
-			  
-
-
         </div>
-        <!-- /.container-fluid -->
-<?php 
-}
-//mysql_close($host);
-?>	
-      </div>
-      <!-- End of Main Content -->
 
-<?php require 'footer.php'?>
+
+        <div class="card shadow mb-4">
+          <div class="card-body">
+
+
+
+            <div class="float-left">
+              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Pendaftaran Santri Baru</h5>
+            </div>
+
+            <div class="float-right">
+              <a title="Lihat Riwayat" href="lihat-santri-pendaftaran-baru.php?id=<?= $row['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card shadow mb-4">
+          <div class="card-body">
+
+
+            <div class="float-left">
+              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Pendaftaran Ulang</h5>
+            </div>
+
+            <div class="float-right">
+              <a title="Lihat Riwayat" href="lihat-santri-pendaftaran-ulang.php?id=<?= $row['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card shadow mb-4">
+          <div class="card-body">
+
+
+            <div class="float-left">
+              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Bulanan</h5>
+            </div>
+
+            <div class="float-right">
+              <a title="Lihat Riwayat" href="lihat-santri-uang-bulanan.php?id=<?= $row['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+  <?php
+      }
+      //mysql_close($host);
+  ?>
+  </div>
+  <!-- End of Main Content -->
+
+  <?php require 'footer.php' ?>
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -184,7 +194,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
   </a>
 
   <!-- Logout Modal-->
-<?php require 'logout-modal.php';?>
+  <?php require 'logout-modal.php'; ?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
