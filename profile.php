@@ -57,15 +57,11 @@ if (isset($_COOKIE['logged_akses'])) {
           </div>
 
           <div class="float-right">
-            <button type="button" class="btn btn-success btn-sm" style="margin:5px;" data-toggle="modal" data-target="#myModalTambah"><i class="fa fa-plus"> Tambah Admin</i></button><br>
+            <button type="button" class="btn btn-success btn-sm" style="margin:5px;" data-toggle="modal" data-target="#myModalTambah"><i class="fa fa-plus"><b> TAMBAH USER</b></i></button><br>
 
           </div>
 
         </div>
-
-
-
-
 
 
         <div class="card-body">
@@ -143,16 +139,6 @@ if (isset($_COOKIE['logged_akses'])) {
                                 <input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">
                               </div>
 
-                              <div class="form-group">
-                                <label>Alamat</label>
-                                <input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">
-                              </div>
-
-                              <div class="form-group">
-                                <label>no_hp</label>
-                                <input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">
-                              </div>
-
                               <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">Ubah</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
@@ -181,11 +167,11 @@ if (isset($_COOKIE['logged_akses'])) {
                     <div class="modal-content">
                       <!-- heading modal -->
                       <div class="modal-header">
-                        <h4 class="modal-title">Tambah Admin</h4>
+                        <h4 class="modal-title"> TAMBAH USER</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                       </div>
                       <!-- body modal -->
-                      <form action="tambah-admin.php" method="get">
+                      <form action="tambah-user.php" method="get">
                         <div class="modal-body">
                           Nama
                           <input type="text" class="form-control" name="nama">

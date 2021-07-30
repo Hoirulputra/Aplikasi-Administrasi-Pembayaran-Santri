@@ -12,7 +12,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
   <title>Admin</title>
+   <?php endif; ?>
+    <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
+  <title>Santri</title>
+   <?php endif; ?>
   <link href='logo.png' rel='icon' type='image/x-icon'/>
 
   <!-- Custom fonts for this template -->

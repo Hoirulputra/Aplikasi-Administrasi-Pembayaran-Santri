@@ -1,15 +1,5 @@
 <?php
   require 'cek-sesi.php';
-  // if (isset($_COOKIE['logged_akses'])) {
-  //   if ($_COOKIE['logged_akses'] != 'santri') {
-  //     $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-  //     echo "Anda tidak berhak mengakses halaman ini <br/>";
-  //     echo "<a href='${url}'>Kembali</a>";
-  //     die;
-  //   }
-  //   $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" .$logged_user['id_santri']. "'");
-  //   $santri = mysqli_fetch_assoc($query);
-  // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,14 +47,7 @@
       </div>
       </div>
       <div class="row">
-            <!-- DataTales Example -->
-         <!--  <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Bukti Pembayaran Santri</h3>
-			 </div>			
-            </div>
-             <tr> -->
+          
          <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM santri");
 $no = 1;
@@ -72,18 +55,7 @@ while ($data = mysqli_fetch_assoc($query))
 {
 ?>
 
-                  <!--   <tr>
-                      <td><?=$data['id']?></td>
-                      <td><?=$data['nama_santri']?></td>
-                      <td><?=$data['jenis_kelamin']?></td>
-                      <td><?=$data['alamat']?></td>
-            <td><?=$data['tahun_masuk']?>/<?=$data['semester']?></td>
-            <td style="width:20%;text-align:center;"> -->
-                    <!-- Button untuk modal -->
-<!-- <a href="lihat-santri.php?id=<?=$data['id'];?>" class="fa fa-eye btn btn-primary btn-sm"></a>
-</td>
-</tr>
- -->
+     
 <?php
 $id = $data['id']; 
 $query_edit = mysqli_query($koneksi,"SELECT * FROM santri WHERE id='$id'");

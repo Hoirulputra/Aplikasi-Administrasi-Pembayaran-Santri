@@ -132,9 +132,10 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="laporan.php">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Data Laporan Keuangan</span>
+          <span>Pembayaran Santri</span>
         </a>
       </li>
+
       <?php endif?>
 
 	  <!-- Divider -->
@@ -199,9 +200,9 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="lihat-santri.php">
+        <a class="nav-link collapsed" href="pembayaran-santri.php">
           <i class="fas fa-clipboard"></i>
-          <span>Bukti Pembayaran Santri</span>
+          <span>Laporan Pembayaran Santri</span>
         </a>
 
       <!-- Sidebar Toggler (Sidebar) -->

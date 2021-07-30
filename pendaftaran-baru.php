@@ -43,6 +43,7 @@
 
 <?php require 'navbar.php'; ?>
 
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 

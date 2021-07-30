@@ -12,8 +12,13 @@ require 'cek-sesi.php';
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin</title>
-  <link href='logo.png' rel='icon' type='image/x-icon'/>
+  <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+    <title>Admin</title>
+  <?php endif; ?>
+  <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
+    <title>Santri</title>
+  <?php endif; ?>
+  <link href='logo.png' rel='icon' type='image/x-icon' />
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
