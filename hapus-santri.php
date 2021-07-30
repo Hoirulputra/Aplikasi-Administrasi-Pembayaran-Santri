@@ -1,5 +1,4 @@
 <?php
-//include('dbconnected.php');
 include('koneksi.php');
 
 $id = $_GET['id'];
@@ -7,8 +6,6 @@ $id = $_GET['id'];
 //query update
 $query = mysqli_query($koneksi,"DELETE FROM `santri` WHERE id = '$id'");
 
-// echo mysqli_error($koneksi);
-// die;
 
 if ($query) {
  # credirect ke page index

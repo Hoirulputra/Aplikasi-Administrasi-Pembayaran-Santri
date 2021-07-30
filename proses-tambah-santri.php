@@ -2,7 +2,7 @@
 //include('dbconnected.php');
 include('koneksi.php');
 
-$id = $_GET['id'];
+$id =date('Y').$_GET['id'];
 $nama = $_GET['nama_santri'];
 $jenis = $_GET['jenis_kelamin'];
 $alamat = $_GET['alamat'];

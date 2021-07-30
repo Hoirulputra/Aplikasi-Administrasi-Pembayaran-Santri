@@ -22,12 +22,7 @@ if (isset($_COOKIE['logged_akses'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
-    <title>Admin</title>
-  <?php endif; ?>
-  <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
-    <title>Santri</title>
-  <?php endif; ?>
+  <title>Santri</title>
   <link href='logo.png' rel='icon' type='image/x-icon' />
 
   <!-- Custom fonts for this template -->
@@ -50,14 +45,7 @@ if (isset($_COOKIE['logged_akses'])) {
 
     <?php require 'navbar.php'; ?>
 
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
-      <div class="clearfix">
-        <div class="float-right">
-          <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-        </div>
-
-      </div>
+    
       <br>
 
       <?php
@@ -66,65 +54,70 @@ if (isset($_COOKIE['logged_akses'])) {
       //$result = mysqli_query($conn, $query);
       while ($row = mysqli_fetch_array($query_edit)) {
       ?>
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data <?php echo $row['nama_santri']; ?></h6>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr>
-                    <td width="30%"><b>Nomor Induk Santri</b></td>
-                    <td><?php echo $row['id']; ?></td>
-                  </tr>
 
-                  <tr>
-                    <td><b>Nama</b></td>
-                    <td><?php echo $row['nama_santri']; ?></td>
-                  </tr>
+     <!-- DataTales Example -->
+          <div class="card shadow mb-4">
 
-                  <tr>
-                    <td><b>Jenis Kelamin</b></td>
-                    <td><?php echo $row['jenis_kelamin']; ?></td>
-                  </tr>
+            <div class="card-header">
+      <div class="float-left">
+              <h2 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Data <b> <?php echo $row['nama_santri']; ?></b></h2>
+        
+      </div>
 
+        </div>
+         
+            <div class="card-body">
+               
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              
+                
                   <tr>
-                    <td><b>Alamat</b></td>
-                    <td><?php echo $row['alamat']; ?></td>
-                  </tr>
 
-                  <tr>
-                    <td><b>Nama Ayah</b></td>
-                    <td><?php echo $row['ayah_santri']; ?></td>
-                  </tr>
+                      <th><b>Nomor Induk Santri</b></th>
+                      
+                     <th><b>Nama</b></th>
+                     
+                      <th><b>Jenis Kelamin</b></th>
+                      
+                       <th><b>Alamat</b></th>
+                                     
+                       <th><b>Nama Ayah</b></th>
+                      
+                       <th><b>Nama Ibu</b></th>
+                       
+                        <th><b>Tahun/Semester Masuk</b></th>
+                       
+                      <th><b>Status Santri</b></th>
+                     </tr>
 
-                  <tr>
-                    <td><b>Nama Ibu</b></td>
-                    <td><?php echo $row['ibu_santri']; ?></td>
-                  </tr>
-
-                  <tr>
-                    <td><b>Tahun/Semester Masuk</b></td>
-                    <td><?php echo $row['tahun_masuk']; ?>/<?php echo $row['semester']; ?></td>
-                  </tr>
-
-                  <tr>
-                    <td><b>Status Santri</b></td>
-                    <td><?php echo $row['status']; ?></td>
-                  </tr>
+                      <tbody>
+                       <tr>
+                     
+                      <td><?php echo $row['id']; ?></td>
+                    
+                     <td><?php echo $row['nama_santri']; ?></td>
+                      
+                      <td><?php echo $row['jenis_kelamin']; ?></td>
+                       
+                       <td><?php echo $row['alamat']; ?></td>              
+                      
+                       <td><?php echo $row['ayah_santri']; ?></td>
+                      
+                       <td><?php echo $row['ibu_santri']; ?></td>
+                        
+                       <td><?php echo $row['tahun_masuk']; ?>/<?php echo $row['semester']; ?></td>
+                      
+                       <td><?php echo $row['status']; ?></td>
+                      </tr>
+    
                 </tbody>
               </table>
-            </div>
           </div>
         </div>
 
-
         <div class="card shadow mb-4">
           <div class="card-body">
-
-
 
             <div class="float-left">
               <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Pendaftaran Santri Baru</h5>
@@ -150,14 +143,10 @@ if (isset($_COOKIE['logged_akses'])) {
             </div>
           </div>
         </div>
-
-
         <div class="card shadow mb-4">
           <div class="card-body">
-
-
             <div class="float-left">
-              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Bulanan</h5>
+              <h4 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Bulanan</h4>
             </div>
 
             <div class="float-right">
@@ -167,11 +156,6 @@ if (isset($_COOKIE['logged_akses'])) {
         </div>
 
 
-
-
-
-
-    </div>
     <!-- /.container-fluid -->
   <?php
       }

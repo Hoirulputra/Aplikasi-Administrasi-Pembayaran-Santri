@@ -93,8 +93,10 @@ if (isset($_COOKIE['logged_akses'])) {
                     <td style="text-align:center;">
                       <!-- Button untuk modal -->
                       <a href="#" type="button" class=" fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id_admin']; ?>"></a>
+                      <a title="Hapus" href="hapus-santri.php?id=<?=$data['id'];?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="fa fa-times-circle btn btn-danger btn-sm"></a>
                     </td>
                   </tr>
+
                   <!-- Modal Edit Mahasiswa-->
                   <div class="modal fade" id="myModal<?php echo $data['id_admin']; ?>" role="dialog">
                     <div class="modal-dialog">

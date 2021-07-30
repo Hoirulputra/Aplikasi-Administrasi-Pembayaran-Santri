@@ -22,8 +22,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin</title>
-  <link href='logo.jpg' rel='icon' type='image/x-icon'/>
+  <title>Santri</title>
+  <link href='logo.png' rel='icon' type='image/x-icon'/>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -51,17 +51,33 @@
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header">
-			<div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Pembayaran Uang Bulanan</h3>
-			 </div>			 
+            <!-- <div class="card-header"> -->
+      
+           <div class="card-body">
+              <div class="table-responsive">
+                
+        <ul class="nav nav-tabs">
+  <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#harian">Pendaftaran Baru</a></li>
+  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#periode">Pendaftaran Ulang</a></li>
+  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#periode2">Uang Bulanan</a></li>
+</ul>
 
-            </div>
-            <div class="card-body">
-                <h1>Ini halaman laporan pembayaran santri: <?=$santri['nama_santri']?></h1>
-                <h3>Manggil data santri sing login bisa langsung pakai <strong class="text-danger">$santri['kolom_tabel']</strong></h3>
-                <h4>Edit halaman ini di <span class="text-danger">/laporan-santri.php</span></h4>
-            </div>
+<div id="myTabContent" class="tab-content">
+  
+  <div class="tab-pane fade active show" id="harian"><br />
+    <form action="lihat-santri-pendaftaran-baru.php" method="POST">
+        <div class="form-group">
+          <label for="tgl_mulai">Mulai</label>
+            <input class="form-control" type="date" name="tgl_mulai" id="tgl_mulai" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" prequired="">
+          </div>
+          <div class="form-group">
+            <label for="tgl_sampai">Sampai</label>
+            <input class="form-control" type="date" name="tgl_sampai" id="tgl_sampai" value="<?=date('Y-m-d');?>" required="">
+        </div>
+        <button type="submit" class="btn btn-primary">Lihat Laporan</button>
+      </form>
+  </div>
+  
 <!-- Modal Edit Mahasiswa-->
 <div class="modal fade" id="myModal<?php echo $data['id']; ?>" role="dialog">
 <div class="modal-dialog">
@@ -85,28 +101,28 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <input type="text" class="form-control" name="id" value="<?php echo $row['id']; ?>" readonly>
 <input type="text" name="nama_santri" class="form-control" value="<?php echo $row['nama_santri']; ?>">      
 <?php $jenis=$row['jenis_kelamin']; ?>
-											<select name="jenis_kelamin" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Pria" <?php echo ($jenis == 'Pria') ? "selected": "" ?>>Pria</option>
-												<option value="Wanita" <?php echo ($jenis == 'Wanita') ? "selected": "" ?>>Wanita</option>
-											</select>
+                      <select name="jenis_kelamin" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Pria" <?php echo ($jenis == 'Pria') ? "selected": "" ?>>Pria</option>
+                        <option value="Wanita" <?php echo ($jenis == 'Wanita') ? "selected": "" ?>>Wanita</option>
+                      </select>
 <input type="text" name="alamat" class="form-control" value="<?php echo $row['alamat']; ?>">   
 <input type="text" name="ayah_santri" class="form-control" value="<?php echo $row['ayah_santri']; ?>">
 <input type="text" name="ibu_santri" class="form-control" value="<?php echo $row['ibu_santri']; ?>">
 <input type="text" name="tahun_masuk" class="form-control" value="<?php echo $row['tahun_masuk']; ?>">
 <?php $semester=$row['semester']; ?>
-											<select name="semester" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Ganjil" <?php echo ($semester == 'Ganjil') ? "selected": "" ?>>Ganjil</option>
-												<option value="Genap" <?php echo ($semester == 'Genap') ? "selected": "" ?>>Genap</option>
-											</select>
+                      <select name="semester" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Ganjil" <?php echo ($semester == 'Ganjil') ? "selected": "" ?>>Ganjil</option>
+                        <option value="Genap" <?php echo ($semester == 'Genap') ? "selected": "" ?>>Genap</option>
+                      </select>
 
 <?php $status=$row['status']; ?>
-											<select name="status" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Baru" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
-												<option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
-											</select>
+                      <select name="status" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Baru" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
+                        <option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
+                      </select>
 <input type="hidden" name="daftar_ulang" value="<?php echo $row['daftar_ulang']; ?>">
 <input type="hidden" name="uang_bulanan" value="Sudah">
 </div>
@@ -128,21 +144,21 @@ while ($row = mysqli_fetch_array($query_edit)) {
 
 <div class="form-group">
 <label>Untuk Bulan</label>
-											<select name="bulan_pembayaran" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Januari">Januari</option>
-												<option value="Februari">Februari</option>
-												<option value="Maret">Maret</option>
-												<option value="April">April</option>
-												<option value="Mei">Mei</option>
-												<option value="Juni">Juni</option>
-												<option value="Juli">Juli</option>
-												<option value="Agustus">Agustus</option>
-												<option value="September">September</option>
-												<option value="Oktober">Oktober</option>
-												<option value="November">November</option>
-												<option value="Desember">Desember</option>
-											</select>
+                      <select name="bulan_pembayaran" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Januari">Januari</option>
+                        <option value="Februari">Februari</option>
+                        <option value="Maret">Maret</option>
+                        <option value="April">April</option>
+                        <option value="Mei">Mei</option>
+                        <option value="Juni">Juni</option>
+                        <option value="Juli">Juli</option>
+                        <option value="Agustus">Agustus</option>
+                        <option value="September">September</option>
+                        <option value="Oktober">Oktober</option>
+                        <option value="November">November</option>
+                        <option value="Desember">Desember</option>
+                      </select>
 </div>
 
 <div class="form-group">
@@ -188,7 +204,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
               </div>
             </div>
           </div>
-		  
+      
 
         </div>
         <!-- /.container-fluid -->
