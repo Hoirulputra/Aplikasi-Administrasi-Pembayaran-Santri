@@ -17,8 +17,8 @@ else
 
 $query = mysqli_query($koneksi, $queryString);
 
-echo mysqli_error($koneksi);
-die;
+// echo mysqli_error($koneksi);
+// die;
 if ($query) {
 echo "<script>alert('Data Berhasil di Tambah')</script>
 	<meta http-equiv='refresh' content='0 url=profile.php'>";
