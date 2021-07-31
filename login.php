@@ -56,6 +56,27 @@ if (isset($_POST['submit'])) {
         $logged_failed = true;
     }
 }
+
+if (isset($_POST['submit_santri'])) {
+    //include('dbconnected.php');
+    include('koneksi.php');
+
+
+    $nama = $_POST['nama'];
+    $jenis_kelamin = $_POST['jenis_kelamin'];
+    $alamat = $_POST['alamat'];
+    $nama_ayah = $_POST['nama_ayah'];
+    $nama_ibu = $_POST['nama_ibu'];
+
+    //query update
+    $query = mysqli_query($koneksi, "INSERT INTO `santri` (`nama_santri`, `jenis_kelamin`, `alamat`, `ayah_santri`, `ibu_santri`, `tahun_masuk`) VALUES ('$nama', '$jenis_kelamin', '$alamat', '$nama_ayah', '$nama_ibu', '')");
+    $data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT LAST_INSERT_ID()"));
+    if ($query) {
+        header("Location:login.php?msg=santri_success&id=" . $data['LAST_INSERT_ID()']);
+    } else {
+        header("Location:login.php?msg=santri_failed");
+    }
+}
 ?>
 
 <head>
@@ -70,6 +91,8 @@ if (isset($_POST['submit'])) {
     <link href='logo.png' rel='icon' type='image/x-icon' />
 
     <link href='logo.png' rel='icon' type='image/x-icon' />
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -141,7 +164,7 @@ if (isset($_POST['submit'])) {
 
 
 
-                <form class="user" action="controller/login/DaftarSantri.php" method="post">
+                <form class="user" action="" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <input required type="text" autocomplete="off" name="nama" class="form-control form-control-user" placeholder="Nama">
@@ -166,7 +189,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" name="submit_santri" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -184,6 +207,7 @@ if (isset($_POST['submit'])) {
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>
         $("form#login").submit(function(e) {
             username = $(this).find("[name='username']").val()
@@ -194,7 +218,16 @@ if (isset($_POST['submit'])) {
                 e.preventDefault()
             }
         })
+
+        <?php if (isset($_GET['msg']) && $_GET['msg'] == 'santri_success') : ?>
+        Swal.fire({
+            title: 'Berhasil',
+            text: 'Pendaftaran berhasil dilakukan, silahkan hubungi administrator untuk info lebih lanjut (ID: <?=((isset($_GET['id'])) ? $_GET['id'] : 'Tidak ada')?>)',
+            icon: 'success',
+        })
+        <?php endif; ?>
     </script>
+    
 
 </body>
 
