@@ -93,7 +93,7 @@ if (isset($_COOKIE['logged_akses'])) {
                     <td style="text-align:center;">
                       <!-- Button untuk modal -->
                       <a href="#" type="button" class=" fa fa-edit btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id_admin']; ?>"></a>
-                      <a title="Hapus" href="hapus-santri.php?id=<?=$data['id'];?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="fa fa-times-circle btn btn-danger btn-sm"></a>
+                      <a title="Hapus" href="hapus-profile.php?id=<?= $data['id_admin']; ?>" class="content-hapus fa fa-times-circle btn btn-danger btn-sm"></a>
                     </td>
                   </tr>
 
@@ -266,6 +266,11 @@ if (isset($_COOKIE['logged_akses'])) {
       value = $(this).val()
       if (value == 'santri')
         $(".santri-form-wrapper").show()
+    })
+    $(".content-hapus").click(function(e) {
+      if (!confirm('Anda Yakin Ingin Menghapus?')) {
+        e.preventDefault()
+      }
     })
   </script>
 </body>
