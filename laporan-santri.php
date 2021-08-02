@@ -65,9 +65,10 @@
 <div id="myTabContent" class="tab-content">
   
   <div class="tab-pane fade active show" id="harian"><br />
-    <form action="lihat-santri-pendaftaran-baru.php" method="POST">
+    <form action="lihat-santri-pendaftaran-baru.php" method="GET">
         <div class="form-group">
           <label for="tgl_mulai">Mulai</label>
+            <input type="hidden" name="id" value="<?=$santri['id']?>">
             <input class="form-control" type="date" name="tgl_mulai" id="tgl_mulai" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" prequired="">
           </div>
           <div class="form-group">

@@ -44,6 +44,7 @@ require 'cek-sesi.php';
         <div class="container-fluid">  
 		<div class="clearfix">
 					<div class="float-right">
+						<a href="#" onclick="window.print()" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>
 						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
 					</div>
 					
