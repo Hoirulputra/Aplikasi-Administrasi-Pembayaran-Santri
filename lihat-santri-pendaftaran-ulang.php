@@ -44,6 +44,7 @@ require 'cek-sesi.php';
         <div class="container-fluid"> 
 <div class="clearfix">
 					<div class="float-right">
+        
 						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
 					</div>
 					
@@ -91,7 +92,7 @@ while ($data1 = mysqli_fetch_assoc($query))
 					  <td>Rp. <?php echo number_format($data1['uang_ujian'], 0, ',', '.'); ?></td>
 					  <td style="text-align:center;">
                     <!-- Button untuk modal -->
-<a title="Hapus" href="hapus-pendaftaran-ulang.php?id=<?=$data1['id'];?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="fa fa-times-circle btn btn-danger btn-sm"></a>
+<!-- <a title="Hapus" href="hapus-pendaftaran-ulang.php?id=<?=$data1['id'];?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="fa fa-times-circle btn btn-danger btn-sm"></a> -->
 </td>
 </tr>
 <?php               

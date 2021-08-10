@@ -52,26 +52,21 @@
 					
 				</div>
 				<br>
-		
 		<div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Tambah Pengeluaran</h6>
             </div>
             <div class="card-body">
-		
-
 <form action="proses-tambah-keluar-uang-bulanan.php" method="get">
 <div class="form-row">
 <div class="form-group col-md-6">
 <label>Tanggal Pengeluaran</label>
 <input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_pembayaran" class="form-control">   
 </div>
-
 <div class="form-group col-md-6">
 <label>Nominal Uang Pengeluaran</label>
 <input type="number" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
 </div>
-
 <div class="form-group col-md-6">
 <label>Jenis</label>
 <select name="jenis" class="form-control" required>
@@ -82,21 +77,16 @@
 												<option value="Lainnya">Lainnya</option>
 											</select>
 </div>
-
 <div class="form-group col-md-6">
 <label>Keterangan</label>
 <input type="text" name="ket_pengeluaran" class="form-control" autocomplete="off" required>      
 </div>
-
-		
         <!-- footer modal -->
 		</div>
         <div class="modal-footer">
 		<button type="submit" class="btn btn-success" >Tambah</button>
 		</div>
 		</form>
-		
-
 			  
             </div>
           </div> 

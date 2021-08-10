@@ -141,7 +141,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
 
 <div class="form-group">
 <label>Nomor Induk Santri</label>
-<input type="text" value="<?php echo $row['id']; ?>" readonly required class="form-control">   
+<input type="text" value="<?php echo $row['id_santri']; ?>" readonly required class="form-control">   
 </div>
 
 <div class="form-group">
@@ -177,7 +177,6 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <label>Nominal Uang Ujian</label>
 <input type="number" name="uang_ujian" class="form-control" required>         
 </div>
-
 
 <div class="modal-footer">  
 <button type="submit" class="btn btn-success">Bayar</button>

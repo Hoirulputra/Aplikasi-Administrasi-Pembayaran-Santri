@@ -156,7 +156,7 @@ if (isset($_POST['submit_santri'])) {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-title">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Daftar Santri</h5>
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Daftar User</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -51,19 +51,15 @@ if (isset($_COOKIE['logged_akses'])) {
       <!-- DataTales Example -->
       <div class="card shadow mb-4">
         <div class="card-header">
-
           <div class="float-left">
             <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Data Pengguna</h3>
           </div>
 
           <div class="float-right">
             <button type="button" class="btn btn-success btn-sm" style="margin:5px;" data-toggle="modal" data-target="#myModalTambah"><i class="fa fa-plus"><b> TAMBAH USER</b></i></button><br>
-
           </div>
 
         </div>
-
-
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -116,10 +112,7 @@ if (isset($_COOKIE['logged_akses'])) {
                             //$result = mysqli_query($conn, $query);
                             while ($row = mysqli_fetch_array($query_edit)) {
                             ?>
-
-
                               <input type="hidden" name="id_admin" value="<?php echo $row['id_admin']; ?>">
-
                               <div class="form-group">
                                 <label>ID</label>
                                 <input type="text" name="id" class="form-control" value="<?php echo $row['id_admin']; ?>" disabled>
@@ -129,7 +122,6 @@ if (isset($_COOKIE['logged_akses'])) {
                                 <label>Nama</label>
                                 <input type="text" name="nama" class="form-control" value="<?php echo $row['nama']; ?>">
                               </div>
-
 
                               <div class="form-group">
                                 <label>Username</label>
@@ -189,7 +181,7 @@ if (isset($_COOKIE['logged_akses'])) {
                           </select>
                           <div class="santri-form-wrapper">
                             Santri
-                            <select name="santri_id" class="form-control">
+                            <select name="id_santri" class="form-control">
                               <?php
                               $query = mysqli_query($koneksi, "SELECT * FROM santri ORDER BY nama_santri ASC");
                               while ($santri = mysqli_fetch_assoc($query)) {

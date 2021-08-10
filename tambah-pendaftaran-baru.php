@@ -1,5 +1,4 @@
 <?php
-//include('dbconnected.php');
 include('koneksi.php');
 
 $id = $_GET['id'];
@@ -11,12 +10,15 @@ $ibu = $_GET['ibu_santri'];
 $status = $_GET['status'];
 $tahun = $_GET['tahun_masuk'];
 $semester = $_GET['semester'];
-$uang_bulanan = $_GET['uang_bulanan'];
 $daftar_ulang = $_GET['daftar_ulang'];
+$uang_bulanan = $_GET['uang_bulanan'];
 
 //query update
-$query = mysqli_query($koneksi,"UPDATE santri SET nama_santri='$nama' , jenis_kelamin='$jenis', alamat='$alamat', ayah_santri='$ayah', ibu_santri='$ibu', status='$status', tahun_masuk='$tahun', semester='$semester', uang_bulanan='$uang_bulanan', daftar_ulang='$daftar_ulang' WHERE id='$id' ");
+$query = mysqli_query($koneksi,"UPDATE santri SET id= '$id' , nama_santri='$nama' , jenis_kelamin='$jenis', alamat='$alamat', ayah_santri='$ayah', ibu_santri='$ibu', status='$status', tahun_masuk='$tahun', semester='$semester' , daftar_ulang='$daftar_ulang', uang_bulanan='$uang_bulanan' WHERE id='$id' ");
 
+
+$id = $_GET['id'];
+// $id_santri = $_GET['id_santri'];
 $uang_pendaftaran_baru = $_GET['uang_pendaftaran_baru'];
 $uang_sewa_lemari = $_GET['uang_sewa_lemari'];
 $uang_seragam_pondok = $_GET['uang_seragam_pondok'];
@@ -27,7 +29,7 @@ $tahun_pembayaran = $_GET['tahun_pembayaran'];
 $semester_pembayaran = $_GET['semester_pembayaran'];
 
 //query update
-$query = mysqli_query($koneksi,"INSERT INTO `pendaftaran_baru` (`id`, `id_santri`, `uang_pendaftaran_baru`, `uang_sewa_lemari`, `uang_seragam_pondok`, `uang_pembangunan`, `uang_ujian`, `tanggal_pembayaran`, `tahun_pembayaran`, `semester_pembayaran`) VALUES (null, '$id', '$uang_pendaftaran_baru', '$uang_sewa_lemari', '$uang_seragam_pondok', '$uang_pembangunan', '$uang_ujian', '$tgl_pembayaran', '$tahun_pembayaran', '$semester_pembayaran')");
+$query = mysqli_query($koneksi,"INSERT INTO `pendaftaran_baru` (`id`,`uang_pendaftaran_baru`, `uang_sewa_lemari`, `uang_seragam_pondok`, `uang_pembangunan`, `uang_ujian`, `tanggal_pembayaran`, `tahun_pembayaran`, `semester_pembayaran`) VALUES (null,'$id' ,  '$uang_pendaftaran_baru', '$uang_sewa_lemari', '$uang_seragam_pondok', '$uang_pembangunan', '$uang_ujian', '$tgl_pembayaran', '$tahun_pembayaran', '$semester_pembayaran')");
 
 if ($query) {
  echo "<script>alert('Data Berhasil di Tambah')</script>

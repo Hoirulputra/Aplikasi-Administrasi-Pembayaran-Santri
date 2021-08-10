@@ -79,7 +79,6 @@ $no = 1;
 while ($data = mysqli_fetch_assoc($query)) 
 {
 ?>
-
                     <tr>
                       <td><?=$data['id']?></td>
                       <td><?=$data['nama_santri']?></td>
@@ -141,22 +140,18 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <label>Alamat</label>
 <input type="text" name="alamat" class="form-control" value="<?php echo $row['alamat']; ?>">      
 </div>
-
 <div class="form-group">
 <label>Nama Ayah Santri</label>
 <input type="text" name="ayah_santri" class="form-control" value="<?php echo $row['ayah_santri']; ?>">      
 </div>
-
 <div class="form-group">
 <label>Nama Ibu Santri</label>
 <input type="text" name="ibu_santri" class="form-control" value="<?php echo $row['ibu_santri']; ?>">      
 </div>
-
 <div class="form-group">
 <label>Tahun Masuk</label>
 <input type="number" name="tahun_masuk" class="form-control" value="<?php echo $row['tahun_masuk']; ?>">      
 </div>
-
 <div class="form-group">
 <label>Semester</label>
 
@@ -167,8 +162,6 @@ while ($row = mysqli_fetch_array($query_edit)) {
 												<option value="Genap" <?php echo ($semester == 'Genap') ? "selected": "" ?>>Genap</option>
 											</select>
 </div>
-
-
 <div class="form-group">
 <label>Status Santri</label>
 
@@ -179,16 +172,14 @@ while ($row = mysqli_fetch_array($query_edit)) {
 												<option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
 											</select>
 </div>
-
 <div class="modal-footer">  
 <button type="submit" class="btn btn-success">Simpan Perubahan</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
 </div>
 <?php 
 }
-//mysql_close($host);
 ?>  
-       
+
 </form>
 </div>
 </div>

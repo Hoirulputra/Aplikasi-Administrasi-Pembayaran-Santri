@@ -165,7 +165,6 @@ while ($row = mysqli_fetch_array($query_edit)) {
 
 <?php 
 }
-//mysql_close($host);
 ?> 	
 </form>
 </div>

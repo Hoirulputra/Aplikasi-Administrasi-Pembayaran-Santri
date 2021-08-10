@@ -55,14 +55,13 @@ while ($data = mysqli_fetch_assoc($query))
 {
 ?>
 
-     
+ 
 <?php
 $id = $data['id']; 
 $query_edit = mysqli_query($koneksi,"SELECT * FROM santri WHERE id='$id'");
 while ($row = mysqli_fetch_array($query_edit)) {  
 ?>
   
-
 <?php 
 }
 ?>  
@@ -70,7 +69,6 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <?php               
 } 
 ?>
-
         </div>
         <!-- /.container-fluid -->
 

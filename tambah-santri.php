@@ -94,17 +94,14 @@
 <label>Nama Ayah Santri</label>
 <input type="text" name="ayah_santri" class="form-control" autocomplete="off">      
 </div>
-
 <div class="form-group col-md-4">
 <label>Nama Ibu Santri</label>
 <input type="text" name="ibu_santri" class="form-control" autocomplete="off">      
 </div>
-
 <div class="form-group col-md-4">
 <label>Tahun Masuk</label>
 <input type="number" name="tahun_masuk" class="form-control" autocomplete="off" required>      
 </div>
-
 <div class="form-group col-md-4">
 <label>Semester</label>
 
@@ -115,7 +112,6 @@
 												<option value="Genap">Genap</option>
 											</select>
 </div>
-
 <div class="form-group col-md-4">
 <label>Status Santri</label>
 
@@ -126,9 +122,7 @@
 												<option value="Lama">Lama</option>
 											</select>
 </div>
-
 </div>
-		
         <!-- footer modal -->
 		</div>
         <div class="modal-footer">

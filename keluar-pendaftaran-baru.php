@@ -56,8 +56,6 @@ require 'cek-sesi.php';
 			  <a style="margin:5px" href="tambah-keluar-pendaftaran-baru.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data Pengeluaran</a>
         <?php endif; ?>
 
-        
-
 			  </div>
             </div>
             <div class="card-body">
@@ -160,7 +158,6 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <input type="number" value="<?php echo $row['nominal_pengeluaran']; ?>" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
 </div>
 
-
 <div class="modal-footer">  
 <button type="submit" class="btn btn-success">Simpan Perubahan</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
@@ -168,7 +165,6 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <?php endif; ?>
 <?php 
 }
-//mysql_close($host);
 ?> 	
 </form>
 </div>

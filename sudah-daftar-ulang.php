@@ -45,7 +45,6 @@ require 'cek-sesi.php';
 				</div>
 				<br>
 
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header">
@@ -104,6 +103,7 @@ $query_edit = mysqli_query($koneksi,"SELECT * FROM santri WHERE id='$id'");
 //$result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_array($query_edit)) {  
 ?>
+
 <div style="display:none !important">
 <input type="text" class="form-control" name="id" value="<?php echo $row['id']; ?>" readonly>
 <input type="text" name="nama_santri" class="form-control" value="<?php echo $row['nama_santri']; ?>">      
@@ -137,15 +137,13 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <div class="form-group">
 <label>Apakah anda yakin ingin menjadikan santri ini belum bayar ? Pengembalian santri menjadi belum bayar adalah untuk pembayaran uang daftar ulang pada priode berikutnya.</label>
 </div>
-
-
 <div class="modal-footer">  
 <button type="submit" class="btn btn-danger">Kembalikan</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
 </div>
 <?php 
 }
-//mysql_close($host);
+
 ?>  
        
 </form>

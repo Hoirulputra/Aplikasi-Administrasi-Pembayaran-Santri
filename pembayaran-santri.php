@@ -1,19 +1,18 @@
 <?php
 require 'cek-sesi.php';
-if (isset($_COOKIE['logged_akses'])) {
-  if ($_COOKIE['logged_akses'] != 'santri') {
-    $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-    echo "Anda tidak berhak mengakses halaman ini <br/>";
-    echo "<a href='${url}'>Kembali</a>";
-    die;
-  }
-  $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" . $logged_user['santri_id'] . "'");
+// if (isset($_COOKIE['logged_akses'])) {
+//   if ($_COOKIE['logged_akses'] != 'santri') {
+//     $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
+//     echo "Anda tidak berhak mengakses halaman ini <br/>";
+//     echo "<a href='${url}'>Kembali</a>";
+//     die;
+//   }
+  $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" . $logged_user['id_santri'] . "'");
   $santri = mysqli_fetch_assoc($query);
-}
+// // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
   <meta charset="utf-8">
@@ -21,8 +20,12 @@ if (isset($_COOKIE['logged_akses'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Santri</title>
+ <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+    <title>Admin</title>
+  <?php endif; ?>
+  <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
+    <title>Santri</title>
+  <?php endif; ?>
   <link href='logo.png' rel='icon' type='image/x-icon' />
 
   <!-- Custom fonts for this template -->
@@ -45,34 +48,91 @@ if (isset($_COOKIE['logged_akses'])) {
 
     <?php require 'navbar.php'; ?>
 
-    
-      <br>
 
       <?php
       $id = $santri['id'];
       $query_edit = mysqli_query($koneksi, "SELECT * FROM santri WHERE id='$id'");
-      //$result = mysqli_query($conn, $query);
+   
       while ($row = mysqli_fetch_array($query_edit)) {
       ?>
+
+         <!-- Begin Page Content -->
+        <div class="container-fluid">  
+    <div class="clearfix">
+          <div class="float-right">
+            <a href="#" onclick="window.print()" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>
+          </div>
+          
+        </div>
+       <br>
 
      <!-- DataTales Example -->
           <div class="card shadow mb-4">
 
             <div class="card-header">
       <div class="float-left">
-              <h2 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Data <b> <?php echo $row['nama_santri']; ?></b></h2>
+              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Data <b> <?php echo $row['nama_santri']; ?></b></h3>
         
       </div>
 
         </div>
-         
+
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-borderless">
+        <tbody>
+        <tr>
+        <td width="30%"><b>Nomor Induk Santri</b></td>
+        <td><?php echo $row['id']; ?></td>
+        </tr>
+        
+        <tr>
+        <td><b>Nama</b></td>
+        <td><?php echo $row['nama_santri']; ?></td>
+        </tr>
+        
+        <tr>
+        <td><b>Jenis Kelamin</b></td>
+        <td><?php echo $row['jenis_kelamin']; ?></td>
+        </tr>
+        
+        <tr>
+        <td><b>Alamat</b></td>
+        <td><?php echo $row['alamat']; ?></td>
+        </tr>
+        
+        <tr>
+        <td><b>Nama Ayah</b></td>
+        <td><?php echo $row['ayah_santri']; ?></td>
+        </tr>
+        
+        <tr>
+        <td><b>Nama Ibu</b></td>
+        <td><?php echo $row['ibu_santri']; ?></td>
+        </tr>
+        
+        <tr>
+        <td><b>Tahun/Semester Masuk</b></td>
+        <td><?php echo $row['tahun_masuk']; ?>/<?php echo $row['semester']; ?></td>
+        </tr>
+        
+        <tr>
+        <td><b>Status Santri</b></td>
+        <td><?php echo $row['status']; ?></td>
+        </tr>
+        </tbody>
+        </table>
+              </div>
+            </div>
+          </div>
+  
+         <!-- 
             <div class="card-body">
                
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              
-                
-                  <tr>
+                <thead>
+                      
 
                       <th><b>Nomor Induk Santri</b></th>
                       
@@ -90,8 +150,10 @@ if (isset($_COOKIE['logged_akses'])) {
                        
                       <th><b>Status Santri</b></th>
                      </tr>
-
-                      <tbody>
+                        
+                    
+                          <tbody>
+                     
                        <tr>
                      
                       <td><?php echo $row['id']; ?></td>
@@ -112,57 +174,164 @@ if (isset($_COOKIE['logged_akses'])) {
                       </tr>
     
                 </tbody>
+             </thead>
               </table>
           </div>
+        </div> -->
+
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Laporan Pembayaran Pendaftaran Santri Baru - <?php echo $row['nama_santri']; ?></h6>
+            </div>
+<?php 
+}
+?>  
+            <div class="card-body">
+              <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Tanggal Pembayaran</th>
+                      <th>Tahun/Semester</th>
+                      <th>Uang Pendaftaran Santri Baru</th>
+                      <th>Uang Sewa Lemari</th>
+            <th>Uang Seragam Pondok</th>
+            <th>Uang Pembangunan</th>
+            <th>Uang Ujian</th>
+
+            <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+          <?php 
+$query = mysqli_query($koneksi,"SELECT * FROM pendaftaran_baru WHERE id_santri='$id'");
+$no = 1;
+while ($data1 = mysqli_fetch_assoc($query)) 
+{
+?>
+
+           <tr>
+            <td><?=$data1['tanggal_pembayaran']?></td>
+            <td><?=$data1['tahun_pembayaran']?>/<?=$data1['semester_pembayaran']?></td>
+            <td>Rp. <?php echo number_format($data1['uang_pendaftaran_baru'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_sewa_lemari'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_seragam_pondok'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_pembangunan'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_ujian'], 0, ',', '.'); ?></td>
+            <td style="text-align:center;">
+                    
+</td>
+</tr>
+<?php               
+} 
+?>
+</tbody>
+</table>
+        
         </div>
-
-        <div class="card shadow mb-4">
-          <div class="card-body">
-
-            <div class="float-left">
-              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Pendaftaran Santri Baru</h5>
-            </div>
-
-            <div class="float-right">
-              <a title="Lihat Riwayat" href="lihat-santri-pendaftaran-baru.php?id=<?= $row['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
-            </div>
-
-          </div>
         </div>
-
-        <div class="card shadow mb-4">
-          <div class="card-body">
-
-
-            <div class="float-left">
-              <h5 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Pendaftaran Ulang</h5>
-            </div>
-
-            <div class="float-right">
-              <a title="Lihat Riwayat" href="lihat-santri-pendaftaran-ulang.php?id=<?= $row['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
-            </div>
-          </div>
         </div>
-        <div class="card shadow mb-4">
-          <div class="card-body">
-            <div class="float-left">
-              <h4 style="margin-top: 3px !important;" class="m-0 font-weight-bold text-primary">Riwayat Uang Bulanan</h4>
+        
+       
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Laporan Pembayaran Pendaftaran Ulang - <?php echo $row['nama_santri']; ?></h6>
             </div>
 
-            <div class="float-right">
-              <a title="Lihat Riwayat" href="lihat-santri-uang-bulanan.php?id=<?= $row['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"> </i> Lihat Riwayat</a>
-            </div>
-          </div>
+
+            <div class="card-body">
+              <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Tanggal Pembayaran</th>
+                      <th>Tahun/Semester</th>
+                      <th>Uang Pendaftaran Ulang</th>
+            <th>Uang Ujian</th>
+            <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+          <?php 
+$query = mysqli_query($koneksi,"SELECT * FROM pendaftaran_ulang WHERE id_santri='$id'");
+$no = 1;
+while ($data1 = mysqli_fetch_assoc($query)) 
+{
+?>
+                    <tr>
+                      <td><?=$data1['tanggal_pembayaran']?></td>
+                      <td><?=$data1['tahun_pembayaran']?>/<?=$data1['semester_pembayaran']?></td>
+                      <td>Rp. <?php echo number_format($data1['uang_pendaftaran_ulang'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_ujian'], 0, ',', '.'); ?></td>
+            <td style="text-align:center;">
+             
+</td>
+</tr>
+<?php               
+} 
+?>
+</tbody>
+</table>
+        
         </div>
+        </div>
+        </div>
+       
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Laporan Pembayaran Uang Bulanan - <?php echo $row['nama_santri']; ?></h6>
+            </div>
+
+            <div class="card-body">
+              <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Tanggal Pembayaran</th>
+                      <th>Untuk Uang Bulan</th>
+            <th>Tahun</th>
+            <th>Uang Makan</th>
+            <th>Uang Asrama</th>
+                      <th>Uang Listrik</th>
+            <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+          <?php 
+$query = mysqli_query($koneksi,"SELECT * FROM uang_bulanan WHERE id_santri='$id'");
+$no = 1;
+while ($data1 = mysqli_fetch_assoc($query)) 
+{
+?>
+                    <tr>
+                      <td><?=$data1['tanggal_pembayaran']?></td>
+                      <td><?=$data1['bulan_pembayaran']?></td>
+            <td><?=$data1['tahun_pembayaran']?></td>
+            <td>Rp. <?php echo number_format($data1['uang_makan'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_asrama'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_listrik'], 0, ',', '.'); ?></td>
+            <td style="text-align:center;">
+</td>
+</tr>
+<?php               
+} 
+?>
+</tbody>
+</table>
+        
+        </div>
+        </div>
+        </div>
+        
 
 
-    <!-- /.container-fluid -->
-  <?php
-      }
-      //mysql_close($host);
-  ?>
-  </div>
-  <!-- End of Main Content -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
 
   <?php require 'footer.php' ?>
 

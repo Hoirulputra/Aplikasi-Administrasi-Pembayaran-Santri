@@ -50,21 +50,92 @@ require 'cek-sesi.php';
 		<div class="clearfix">
 					<div class="float-right">
 						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-					<button onclick="printContent('konten')" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Laporan</button>
-					
+					</div>				
+					<button onclick="printContent('konten')" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Laporan</button>					
 				</div>
-				<br>
-				
-				<div id="konten">
-				
-
+				<br>		
+				<div id="konten">				
 <?php
 $tgl_mulai=$_POST['tgl_mulai'];
 $tgl_sampai=$_POST['tgl_sampai'];
+?>     
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Laporan Uang Keluar Bulanan dari <?php echo $tgl_mulai ?> sampai dengan <?php echo $tgl_sampai ?></h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+        
+<?php 
+$query1 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalmakan FROM keluar_uang_bulanan WHERE jenis='Uang Makan' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$totalmakan=0;
+while ($row1= mysqli_fetch_array($query1)) {
+$totalmakan += $row1['totalmakan']; 
+}
 ?>
 
+<?php 
+$query2 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalasrama FROM keluar_uang_bulanan WHERE jenis='Uang Asrama' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$totalasrama=0;
+while ($row2= mysqli_fetch_array($query2)) {
+$totalasrama += $row2['totalasrama']; 
+}
+?>
+
+<?php 
+$query3 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totallistrik FROM keluar_uang_bulanan WHERE jenis='Uang Listrik' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$totallistrik=0;
+while ($row3= mysqli_fetch_array($query3)) {
+$totallistrik += $row3['totallistrik']; 
+}
+
+?>
+<?php 
+$query4 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totallain FROM keluar_uang_bulanan WHERE jenis='Lainnya' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$totallain=0;
+while ($row4= mysqli_fetch_array($query4)) {
+$totallain += $row4['totallain']; 
+}
+$totalkeluar=0;
+$totalkeluar=$totalmakan+$totalasrama+$totallistrik+$totallain;
+?>
+<table class="table table-bordered" width="100%" cellspacing="0">
+<thead>
+<tr>
+<th>Jenis Pengeluaran</th>
+<th style="width:20%">Total</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Uang Makan</td>
+<td>Rp. <?php echo number_format($totalmakan, 0, ',', '.'); ?></td>
+</tr>
+<tr>
+<td>Uang Asrama</td>
+<td>Rp. <?php echo number_format($totalasrama, 0, ',', '.'); ?></td>
+</tr>
+<tr>
+<td>Uang Listrik</td>
+<td>Rp. <?php echo number_format($totallistrik, 0, ',', '.'); ?></td>
+</tr>
+<tr>
+<td>Uang Lainnya</td>
+<td>Rp. <?php echo number_format($totallain, 0, ',', '.'); ?></td>
+</tr>
+
+<tr>
+<td><b>Total Pembayaran</b></td>
+<td><b>Rp. <?php echo number_format($totalkeluar, 0, ',', '.'); ?></b></td>
+</tr>
+</tbody>
+</table>
+    
+        </div>
+        </div>
+        </div>
+        
 <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Laporan Pembayaran Bulanan dari <?php echo $tgl_mulai ?> sampai dengan <?php echo $tgl_sampai ?></h6>
@@ -80,7 +151,6 @@ $total2 = 0;
 $total3 = 0;
 $totalmasuk = 0;
 while ($row = mysqli_fetch_array($query)) {
-
 $total1 += $row['total1'];         
 $total2 += $row['total2'];
 $total3 += $row['total3'];
@@ -88,10 +158,7 @@ $totalmasuk= $total1+$total2+$total3;
 }
 ?>		
 
-
-
 <table class="table table-bordered" width="100%" cellspacing="0">
-
 <thead>
 <tr>
 <th>Rincian Pembayaran</th>
@@ -116,7 +183,7 @@ $totalmasuk= $total1+$total2+$total3;
 </tr>
 
 <tr>
-<td><b>Total Pembayaran</b></td>
+<td><b>Total Pembayaran Santri</b></td>
 <td><b>Rp. <?php echo number_format($totalmasuk, 0, ',', '.'); ?></b></td>
 </tr>
 

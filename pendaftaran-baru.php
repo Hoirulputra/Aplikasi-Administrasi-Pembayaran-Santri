@@ -65,7 +65,7 @@
                       <th>Nama Santri</th>
                       <th>Jenis Kelamin</th>
                       <th>Alamat</th>
-					  <th>Status</th>
+					     <th>Status</th>
 					  <th>Aksi</th>
                     </tr>
                   </thead>
@@ -139,22 +139,18 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <label>Nomor Induk Santri</label>
 <input type="text" value="<?php echo $row['id']; ?>" readonly required class="form-control">   
 </div>
-
 <div class="form-group">
 <label>Nama Santri</label>
 <input type="text" value="<?php echo $row['nama_santri']; ?>" readonly required class="form-control">   
 </div>
-
 <div class="form-group">
 <label>Tanggal Pembayaran</label>
 <input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_pembayaran" class="form-control">   
 </div>
-
 <div class="form-group">
 <label>Tahun</label>
 <input autocomplete="off" type="number" required name="tahun_pembayaran" class="form-control">   
 </div>
-
 <div class="form-group">
 <label>Semester</label>
 											<select name="semester_pembayaran" class="form-control" required>
@@ -163,33 +159,26 @@ while ($row = mysqli_fetch_array($query_edit)) {
 												<option value="Genap">Genap</option>
 											</select>
 </div>
-
 <div class="form-group">
 <label>Nominal Uang Pendaftaran</label>
 <input type="number" name="uang_pendaftaran_baru" class="form-control" required>   
 </div>
-
 <div class="form-group">
 <label>Nominal Uang Sewa Lemari</label>
 <input type="number" name="uang_sewa_lemari" class="form-control" required>   
 </div>
-
 <div class="form-group">
 <label>Nominal Uang Seragam Pondok</label>
 <input type="number" name="uang_seragam_pondok" class="form-control" required>   											
 </div>
-
 <div class="form-group">
 <label>Nominal Uang Pembangunan</label>
 <input type="number" name="uang_pembangunan" class="form-control" required>      
 </div>
-
 <div class="form-group">
 <label>Nominal Uang Ujian</label>
 <input type="number" name="uang_ujian" class="form-control" required>         
 </div>
-
-
 <div class="modal-footer">  
 <button type="submit" class="btn btn-success">Bayar</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>

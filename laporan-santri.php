@@ -7,7 +7,7 @@
       echo "<a href='${url}'>Kembali</a>";
       die;
     }
-    $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" .$logged_user['santri_id']. "'");
+    $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" .$logged_user['id_santri']. "'");
     $santri = mysqli_fetch_assoc($query);
   }
 ?>

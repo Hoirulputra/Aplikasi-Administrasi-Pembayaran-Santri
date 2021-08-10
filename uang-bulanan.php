@@ -138,22 +138,18 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <input type="hidden" name="daftar_ulang" value="<?php echo $row['daftar_ulang']; ?>">
 <input type="hidden" name="uang_bulanan" value="Sudah">
 </div>
-
 <div class="form-group">
 <label>Nomor Induk Santri</label>
-<input type="text" value="<?php echo $row['id']; ?>" readonly required class="form-control">   
+<input type="text" value="<?php echo $row['id_santri']; ?>" readonly required class="form-control">   
 </div>
-
 <div class="form-group">
 <label>Nama Santri</label>
 <input type="text" value="<?php echo $row['nama_santri']; ?>" readonly required class="form-control">   
 </div>
-
 <div class="form-group">
 <label>Tanggal Pembayaran</label>
 <input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_pembayaran" class="form-control">   
 </div>
-
 <div class="form-group">
 <label>Untuk Bulan</label>
 											<select name="bulan_pembayaran" class="form-control" required>
@@ -172,17 +168,14 @@ while ($row = mysqli_fetch_array($query_edit)) {
 												<option value="Desember">Desember</option>
 											</select>
 </div>
-
 <div class="form-group">
 <label>Tahun</label>
 <input type="number" name="tahun_pembayaran" autocomplete="off" class="form-control" required>   
 </div>
-
 <div class="form-group">
 <label>Nominal Uang Makan</label>
 <input type="number" name="uang_makan" class="form-control" required>   
 </div>
-
 <div class="form-group">
 <label>Nominal Uang Asrama</label>
 <input type="number" name="uang_asrama" class="form-control" required>   
@@ -200,7 +193,6 @@ while ($row = mysqli_fetch_array($query_edit)) {
 </div>
 <?php 
 }
-//mysql_close($host);
 ?>  
        
 </form>

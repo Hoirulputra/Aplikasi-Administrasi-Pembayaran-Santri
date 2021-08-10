@@ -64,9 +64,82 @@ $tgl_mulai=$_POST['tgl_mulai'];
 $tgl_sampai=$_POST['tgl_sampai'];
 ?>
 
+
 <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Laporan Pembayaran Pendaftaran Ulang dari <?php echo $tgl_mulai ?> sampai dengan <?php echo $tgl_sampai ?></h6>
+              <h6 class="m-0 font-weight-bold text-primary">Laporan Rincian Pembayaran Pendaftaran Ulang dari <?php echo $tgl_mulai ?> sampai dengan <?php echo $tgl_sampai ?></h6>
+            </div>
+
+            <div class="card-body">
+              <div class="table-responsive">
+        
+<?php 
+$query1 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalulang FROM keluar_pendaftaran_ulang WHERE jenis='Uang Pendaftaran Ulang' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$totalulang=0;
+while ($row1= mysqli_fetch_array($query1)) {
+$totalulang += $row1['totalulang']; 
+}
+?>
+
+
+<?php 
+$query2 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalujian FROM keluar_pendaftaran_ulang WHERE jenis='Uang Ujian' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$totalujian=0;
+while ($row2= mysqli_fetch_array($query2)) {
+$totalujian += $row2['totalujian']; 
+}
+?>
+
+<?php 
+$query3 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totallain FROM keluar_pendaftaran_ulang WHERE jenis='Lainnya' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$totallain=0;
+while ($row3= mysqli_fetch_array($query3)) {
+$totallain += $row3['totallain']; 
+}
+
+
+$totalkeluar=0;
+$totalkeluar=$totalulang+$totalujian+$totallain;
+?>
+<table class="table table-bordered" width="100%" cellspacing="0">
+
+<thead>
+<tr>
+<th>Jenis Pengeluaran</th>
+<th style="width:20%">Total</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Uang Pendaftaran Baru</td>
+<td>Rp. <?php echo number_format($totalulang, 0, ',', '.'); ?></td>
+</tr>
+
+<tr>
+<td>Uang Ujian</td>
+<td>Rp. <?php echo number_format($totalujian, 0, ',', '.'); ?></td>
+</tr>
+
+<tr>
+<td>Uang Lainnya</td>
+<td>Rp. <?php echo number_format($totallain, 0, ',', '.'); ?></td>
+</tr>
+<tr>
+<td><b>Total Pembayaran</b></td>
+<td><b>Rp. <?php echo number_format($totalkeluar, 0, ',', '.'); ?></b></td>
+</tr>
+</tbody>
+</table>
+  
+        </div>
+        </div>
+        </div>
+        
+
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Laporan Pembayaran Santri Pendaftaran Ulang dari <?php echo $tgl_mulai ?> sampai dengan <?php echo $tgl_sampai ?></h6>
             </div>
 
             <div class="card-body">
@@ -85,10 +158,7 @@ $totalmasuk= $total1+$total2;
 }
 ?>		
 
-
-
 <table class="table table-bordered" width="100%" cellspacing="0">
-
 <thead>
 <tr>
 <th>Rincian Pembayaran</th>
@@ -106,12 +176,10 @@ $totalmasuk= $total1+$total2;
 <td>Uang Ujian</td>
 <td>Rp. <?php echo number_format($total2, 0, ',', '.'); ?></td>
 </tr>
-
 <tr>
-<td><b>Total Pembayaran</b></td>
+<td><b>Total Pembayaran Santri</b></td>
 <td><b>Rp. <?php echo number_format($totalmasuk, 0, ',', '.'); ?></b></td>
 </tr>
-
 </tbody>
 </table>
 	  
@@ -119,7 +187,6 @@ $totalmasuk= $total1+$total2;
 			  </div>
 			  </div>
         
-
         </div>
 		</div>
         <!-- /.container-fluid -->
@@ -159,7 +226,5 @@ $totalmasuk= $total1+$total2;
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-
 </body>
-
 </html>

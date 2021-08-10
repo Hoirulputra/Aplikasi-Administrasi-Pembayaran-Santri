@@ -61,7 +61,6 @@
 </ul>
 
 <div id="myTabContent" class="tab-content">
-	
 	<div class="tab-pane fade active show" id="harian"><br />
 		<form action="laporan-pendaftaran-baru.php" method="POST">
     		<div class="form-group">
@@ -75,9 +74,6 @@
     		<button type="submit" class="btn btn-primary">Lihat Laporan</button>
     	</form>
 	</div>
-	
-	
-	
 	<div class="tab-pane fade" id="periode"><br />
 		<form action="laporan-pendaftaran-ulang.php" method="POST">
     		<div class="form-group">
@@ -109,10 +105,35 @@
 </div>
 	
       </div>
+<br>
+                  
+             <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header">
+      <div class="float-left"> 
+        <div class='alert alert-info alert-dismissible fade show text-left'> <button type="submit" class="btn btn-primary">Laporan Pembayaran Santri<select name="id_santri" class="form-control"></button>
+                              <?php
+                              $query = mysqli_query($koneksi, "SELECT * FROM santri ORDER BY nama_santri ASC");
+                              while ($santri = mysqli_fetch_assoc($query)) {
+                              ?>
+                                <option value="<?= $santri['id'] ?>"><?= $santri['nama_santri'] ?></option>
+                              <?php
+                              }
+                              ?>
+                            </select> <a style="margin:5px" href="pembayaran-santri.php" class="btn btn-success btn-sm">Lihat Laporan</a>
+        <a class="fa fa-eye btn btn-primary btn-sm"></a>
+       </div>
+      
+        </div>   
+            </div>                 
+        
+      </div>
+      </div>
+  
+
       <!-- End of Main Content -->
 
 <?php require 'footer.php'?>
-
     </div>
     <!-- End of Content Wrapper -->
 

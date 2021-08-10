@@ -6,14 +6,14 @@ $nama = $_GET['nama'];
 $username = $_GET['username'];
 $pass = $_GET['pass'];
 $hak_akses = $_GET['hak_akses'];
-$santri_id = $_GET['santri_id'];
+$id_santri = $_GET['id_santri'];
 
 
 //query update
 if ($hak_akses != 'santri')
-	$queryString = "INSERT INTO `admin` (`nama`, `username`, `pass`, `hak_akses`, `santri_id`) VALUES ('$nama', '$username', '$pass', '$hak_akses', NULL)";
+	$queryString = "INSERT INTO `admin` (`nama`, `username`, `pass`, `hak_akses`, `id_santri`) VALUES ('$nama', '$username', '$pass', '$hak_akses', NULL)";
 else 
-	$queryString = "INSERT INTO `admin` (`nama`, `username`, `pass`, `hak_akses`, `santri_id`) VALUES ('$nama', '$username', '$pass', '$hak_akses', '$santri_id')";
+	$queryString = "INSERT INTO `admin` (`nama`, `username`, `pass`, `hak_akses`, `id_santri`) VALUES ('$nama', '$username', '$pass', '$hak_akses', '$id_santri')";
 
 $query = mysqli_query($koneksi, $queryString);
 

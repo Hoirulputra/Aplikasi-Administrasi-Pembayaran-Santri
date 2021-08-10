@@ -205,14 +205,6 @@
           <span>Laporan Pembayaran Santri</span>
         </a>
 
-         <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="laporan-santri.php">
-          <i class="fas fa-clipboard"></i>
-          <span>Bukti Pembayaran Santri</span>
-        </a>
-
-
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
