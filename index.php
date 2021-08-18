@@ -35,12 +35,6 @@ $santri = mysqli_num_rows($santri);
 $santribaru = mysqli_query($koneksi, "SELECT * FROM santri WHERE status='Baru'");
 $santribaru = mysqli_num_rows($santribaru);
 
-$santriulang = mysqli_query($koneksi, "SELECT * FROM santri WHERE status='Lama' AND daftar_ulang='Belum'");
-$santriulang = mysqli_num_rows($santriulang);
-
-$santribulanan = mysqli_query($koneksi, "SELECT * FROM santri WHERE status='Lama' AND uang_bulanan='Belum'");
-$santribulanan = mysqli_num_rows($santribulanan);
-
 ?>
       <!-- Main Content -->
       <div id="content">
@@ -71,105 +65,56 @@ $santribulanan = mysqli_num_rows($santribulanan);
   
           <!-- Content Row -->
           
-		  
-		  
-		  
-		  <div class="mb-12">
-		  <div class='alert alert-info alert-dismissible fade show text-left'>
-				<button type='button' class='close' data-dismiss='alert'>&times;</button>
-				Selamat datang <?=((isset($logged_user)) ? $logged_user['nama'] : 'Tidak ada data profil')?>, pada halaman Admin Aplikasi Administrasi Pembayaran PP Hidayatul Mubtadiin Turen.
-			</div>
-			</div>
-		  <div class="row">
-		  
-		  
+      
+      
+      
+      <div class="mb-12">
+      <div class='alert alert-info alert-dismissible fade show text-left'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Selamat datang <?=((isset($logged_user)) ? $logged_user['nama'] : 'Tidak ada data profil')?>, pada halaman Admin Aplikasi Administrasi Pembayaran PP Hidayatul Mubtadiin Turen.
+      </div>
+      </div>
+      <div class="row">
+      
+      
 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-5 col-md-10 mb-8">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Santri</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$santri?></div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-2">Total Santri</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800"><?=$santri?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-users fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
-				
-			</div>
+        
+      </div>
             </div>
+                
+
 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-5 col-md-10 mb-8">
               <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Santri Baru</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$santribaru?></div>
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-2">Santri Baru</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800"><?=$santribaru?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-user fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
-				
-              </div>
-            </div>
+        
+            
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Santri Belum Daftar Ulang</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?=$santriulang?></div>
-                        </div>   
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Santri Belum Bayar Uang Bulanan</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$santribulanan?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          
-
-
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
 
 <?php require 'footer.php'?>
 

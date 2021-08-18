@@ -1,4 +1,4 @@
-<?php
+ <?php
   require 'cek-sesi.php';
   if (isset($_COOKIE['logged_akses'])) {
     if ($_COOKIE['logged_akses'] != 'admin') {

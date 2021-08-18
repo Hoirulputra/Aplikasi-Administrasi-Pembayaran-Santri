@@ -6,7 +6,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=((isset($logged_user)) ? $logged_user['nama'] : 'Tidak ada data profil')?></span>
-                <img class="img-profile rounded-circle" src="http://localhost/Aplikasi Administrasi Pembayaran Santri/img/admin.png">
+                <img class="img-profile rounded-circle" src="http://localhost/Aplikasi_Administrasi-Pembayaran(Santri_PP.HM)/img/admin.png">
                 <?php endif; ?>
                 <?php if ($_COOKIE['logged_akses'] == 'bendahara') : ?>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=((isset($logged_user)) ? $logged_user['nama'] : 'Tidak ada data profil')?></span>
@@ -14,7 +14,7 @@
                 <?php endif; ?>
                 <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=((isset($logged_user)) ? $logged_user['nama'] : 'Tidak ada data profil')?></span>
-                <img class="img-profile rounded-circle" src="http://localhost/Aplikasi Administrasi Pembayaran Santri/img/user.png">
+                <img class="img-profile rounded-circle" src="http://localhost/Aplikasi_Administrasi-Pembayaran(Santri_PP.HM)/img/user.png">
                 <?php endif; ?>
               </a>
               <!-- Dropdown - admin Information-->

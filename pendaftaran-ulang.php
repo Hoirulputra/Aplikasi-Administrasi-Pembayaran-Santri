@@ -1,13 +1,5 @@
 <?php
-  require 'cek-sesi.php';
-  if (isset($_COOKIE['logged_akses'])) {
-    if ($_COOKIE['logged_akses'] != 'admin' && $_COOKIE['logged_akses'] != 'bendahara') {
-      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-      echo "Anda tidak berhak mengakses halaman ini <br/>";
-      echo "<a href='${url}'>Kembali</a>";
-      die;
-    } 
-  }
+require 'cek-sesi.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +43,7 @@
           <div class="card shadow mb-4">
             <div class="card-header">
 			<div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Pembayaran Uang Pendaftaran Ulang</h3>
+              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Pembayaran Semester Santri</h3>
 			 </div>
 			 
 			 <div class="float-right">			  
@@ -97,7 +89,7 @@ while ($data = mysqli_fetch_assoc($query))
 <!-- Modal content-->
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title">Bayar Uang Pendaftaran Ulang</h4>
+<h4 class="modal-title">Bayar Uang Pendafatran Ulang</h4>
 <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body">
@@ -141,7 +133,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
 
 <div class="form-group">
 <label>Nomor Induk Santri</label>
-<input type="text" value="<?php echo $row['id_santri']; ?>" readonly required class="form-control">   
+<input type="text" value="<?php echo $row['id']; ?>" readonly required class="form-control">   
 </div>
 
 <div class="form-group">
@@ -151,12 +143,8 @@ while ($row = mysqli_fetch_array($query_edit)) {
 
 <div class="form-group">
 <label>Tanggal Pembayaran</label>
-<input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_pembayaran" class="form-control">   
-</div>
-
-<div class="form-group">
-<label>Tahun</label>
-<input autocomplete="off" type="number" required name="tahun_pembayaran" class="form-control">   
+<!-- <input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_pembayaran" class="form-control"> -->
+ <input type="date" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" name="tanggal_pembayaran"  id="tanggal_pembayaran" class="form-control"   prequired="">   
 </div>
 
 <div class="form-group">
@@ -169,14 +157,21 @@ while ($row = mysqli_fetch_array($query_edit)) {
 </div>
 
 <div class="form-group">
-<label>Nominal Uang Pendaftaran Ulang</label>
-<input type="number" name="uang_pendaftaran_ulang" class="form-control" required>   
+<label>Nominal Pendaftaran Ulang</label>
+<select name="Nominal Pendaftaran Ulang" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                       <option value="Rp.50.000">Rp.50.000</option>
+                      </select>  
 </div>
 
 <div class="form-group">
 <label>Nominal Uang Ujian</label>
-<input type="number" name="uang_ujian" class="form-control" required>         
+<select name="Nominal Uang Ujian" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                       <option value="Rp.50.000">Rp.50.000</option>
+                      </select> 
 </div>
+
 
 <div class="modal-footer">  
 <button type="submit" class="btn btn-success">Bayar</button>

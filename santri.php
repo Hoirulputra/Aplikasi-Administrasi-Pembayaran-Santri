@@ -100,28 +100,28 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <input type="text" class="form-control" name="id" value="<?php echo $row['id']; ?>" readonly>
 <input type="text" name="nama_santri" class="form-control" value="<?php echo $row['nama_santri']; ?>">      
 <?php $jenis=$row['jenis_kelamin']; ?>
-											<select name="jenis_kelamin" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Pria" <?php echo ($jenis == 'Pria') ? "selected": "" ?>>Pria</option>
-												<option value="Wanita" <?php echo ($jenis == 'Wanita') ? "selected": "" ?>>Wanita</option>
-											</select>
+                      <select name="jenis_kelamin" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Pria" <?php echo ($jenis == 'Pria') ? "selected": "" ?>>Pria</option>
+                        <option value="Wanita" <?php echo ($jenis == 'Wanita') ? "selected": "" ?>>Wanita</option>
+                      </select>
 <input type="text" name="alamat" class="form-control" value="<?php echo $row['alamat']; ?>">   
 <input type="text" name="ayah_santri" class="form-control" value="<?php echo $row['ayah_santri']; ?>">
 <input type="text" name="ibu_santri" class="form-control" value="<?php echo $row['ibu_santri']; ?>">
 <input type="text" name="tahun_masuk" class="form-control" value="<?php echo $row['tahun_masuk']; ?>">
 <?php $semester=$row['semester']; ?>
-											<select name="semester" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Ganjil" <?php echo ($semester == 'Ganjil') ? "selected": "" ?>>Ganjil</option>
-												<option value="Genap" <?php echo ($semester == 'Genap') ? "selected": "" ?>>Genap</option>
-											</select>
+                      <select name="semester" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Ganjil" <?php echo ($semester == 'Ganjil') ? "selected": "" ?>>Ganjil</option>
+                        <option value="Genap" <?php echo ($semester == 'Genap') ? "selected": "" ?>>Genap</option>
+                      </select>
 
 <?php $status=$row['status']; ?>
-											<select name="status" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Baru" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
-												<option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
-											</select>
+                      <select name="status" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Baru" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
+                        <option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
+                      </select>
 <input type="hidden" name="daftar_ulang" value="<?php echo $row['daftar_ulang']; ?>">
 <input type="hidden" name="uang_bulanan" value="Sudah">
 </div>
@@ -143,21 +143,21 @@ while ($row = mysqli_fetch_array($query_edit)) {
 
 <div class="form-group">
 <label>Untuk Bulan</label>
-											<select name="bulan_pembayaran" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Januari">Januari</option>
-												<option value="Februari">Februari</option>
-												<option value="Maret">Maret</option>
-												<option value="April">April</option>
-												<option value="Mei">Mei</option>
-												<option value="Juni">Juni</option>
-												<option value="Juli">Juli</option>
-												<option value="Agustus">Agustus</option>
-												<option value="September">September</option>
-												<option value="Oktober">Oktober</option>
-												<option value="November">November</option>
-												<option value="Desember">Desember</option>
-											</select>
+                      <select name="bulan_pembayaran" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Januari">Januari</option>
+                        <option value="Februari">Februari</option>
+                        <option value="Maret">Maret</option>
+                        <option value="April">April</option>
+                        <option value="Mei">Mei</option>
+                        <option value="Juni">Juni</option>
+                        <option value="Juli">Juli</option>
+                        <option value="Agustus">Agustus</option>
+                        <option value="September">September</option>
+                        <option value="Oktober">Oktober</option>
+                        <option value="November">November</option>
+                        <option value="Desember">Desember</option>
+                      </select>
 </div>
 
 <div class="form-group">
@@ -203,7 +203,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
               </div>
             </div>
           </div>
-		  
+      
 
         </div>
         <!-- /.container-fluid -->

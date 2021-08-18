@@ -1,13 +1,5 @@
 <?php
-  require 'cek-sesi.php';
-  if (isset($_COOKIE['logged_akses'])) {
-    if ($_COOKIE['logged_akses'] != 'admin' && $_COOKIE['logged_akses'] != 'bendahara') {
-      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-      echo "Anda tidak berhak mengakses halaman ini <br/>";
-      echo "<a href='${url}'>Kembali</a>";
-      die;
-    } 
-  }
+require 'cek-sesi.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +43,7 @@
           <div class="card shadow mb-4">
             <div class="card-header">
 			<div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Pembayaran Uang Bulanan</h3>
+              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Pembayaran Bulanan Santri</h3>
 			 </div>
 			 
 			 <div class="float-right">			  
@@ -90,7 +82,7 @@ while ($data = mysqli_fetch_assoc($query))
 <a title="Bayar Uang Bulanan" href="#" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>">Bayar Uang Bulanan</a>
 </td>
 </tr>
-<!-- Modal Edit Santri-->
+<!-- Modal Edit Mahasiswa-->
 <div class="modal fade" id="myModal<?php echo $data['id']; ?>" role="dialog">
 <div class="modal-dialog">
 
@@ -132,24 +124,28 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <?php $status=$row['status']; ?>
 											<select name="status" class="form-control" required>
 												<option value="">-- Silahkan Pilih --</option>
-												<option value="Baru" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
+												<option value="Lama" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
 												<option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
 											</select>
 <input type="hidden" name="daftar_ulang" value="<?php echo $row['daftar_ulang']; ?>">
 <input type="hidden" name="uang_bulanan" value="Sudah">
 </div>
+
 <div class="form-group">
 <label>Nomor Induk Santri</label>
-<input type="text" value="<?php echo $row['id_santri']; ?>" readonly required class="form-control">   
+<input type="text" value="<?php echo $row['id']; ?>" readonly required class="form-control">   
 </div>
+
 <div class="form-group">
 <label>Nama Santri</label>
 <input type="text" value="<?php echo $row['nama_santri']; ?>" readonly required class="form-control">   
 </div>
+
 <div class="form-group">
 <label>Tanggal Pembayaran</label>
-<input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_pembayaran" class="form-control">   
+<input type="date" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" name="tanggal_pembayaran"  id="tanggal_pembayaran" class="form-control"   prequired="">   
 </div>
+
 <div class="form-group">
 <label>Untuk Bulan</label>
 											<select name="bulan_pembayaran" class="form-control" required>
@@ -168,22 +164,30 @@ while ($row = mysqli_fetch_array($query_edit)) {
 												<option value="Desember">Desember</option>
 											</select>
 </div>
-<div class="form-group">
-<label>Tahun</label>
-<input type="number" name="tahun_pembayaran" autocomplete="off" class="form-control" required>   
-</div>
+
+
 <div class="form-group">
 <label>Nominal Uang Makan</label>
-<input type="number" name="uang_makan" class="form-control" required>   
+<select name="Nominal Uang Makan" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                       <option value="Rp.500.000">Rp.500.000</option>
+                      </select>  
 </div>
+
 <div class="form-group">
 <label>Nominal Uang Asrama</label>
-<input type="number" name="uang_asrama" class="form-control" required>   
+<select name="Nominal Uang Asrama" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                       <option value="Rp.50.000">Rp.50.000</option>
+                      </select>    
 </div>
 
 <div class="form-group">
 <label>Nominal Uang Listrik</label>
-<input type="number" name="uang_listrik" class="form-control" required>   
+<select name="Nominal Uang Listrik" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                       <option value="Rp.50.000">Rp.50.000</option>
+                      </select>     
 </div>
 
 
@@ -193,6 +197,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
 </div>
 <?php 
 }
+//mysql_close($host);
 ?>  
        
 </form>

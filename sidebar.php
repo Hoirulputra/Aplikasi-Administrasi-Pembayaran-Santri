@@ -10,7 +10,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-chart-pie"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Administrasi Pembayaran</div>
+        <div class="sidebar-brand-text mx-3">ADMINISTRASI SANTRI</div>
       </a>
       <?php endif; ?>
        <?php if ($_COOKIE['logged_akses'] == 'santri') : ?>
@@ -18,7 +18,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-chart-pie"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Pembayaran Santri</div>
+        <div class="sidebar-brand-text mx-3">ADMINISTRASI SANTRI</div>
       </a>
       <?php endif; ?>
 
@@ -34,7 +34,7 @@
       </li>
       <?php endif; ?>
 
-		<!-- Divider -->
+    <!-- Divider -->
     <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
       <hr class="sidebar-divider">
 
@@ -52,7 +52,7 @@
       </li>
     <?php endif; ?>
     
-	  
+    
 <!-- Divider -->
 <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 
@@ -60,7 +60,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Rincian Pembayaran
+        Tagihan Santri
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -70,15 +70,15 @@
           <span>Pendaftaran Baru</span>
         </a>
       </li>
-	  
-	  <li class="nav-item">
+    
+    <li class="nav-item">
         <a class="nav-link collapsed" href="keluar-pendaftaran-ulang.php">
           <i class="fas fa-fw fa-minus-circle"></i>
           <span>Pendaftaran Ulang</span>
         </a>
       </li>
-	  
-	  <li class="nav-item">
+    
+    <li class="nav-item">
         <a class="nav-link collapsed" href="keluar-uang-bulanan.php">
           <i class="fas fa-fw fa-minus-circle"></i>
           <span>Uang Bulanan</span>
@@ -86,7 +86,7 @@
       </li>
     <?php endif; ?>
 
-	  
+    
     <!-- Divider -->
     <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
       <hr class="sidebar-divider">
@@ -97,7 +97,8 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      
+    <li class="nav-item">
         <a class="nav-link collapsed" href="pendaftaran-baru.php">
           <i class="fas fa-fw fa-plus-circle"></i>
           <span>Pendaftaran Baru</span>
@@ -138,7 +139,7 @@
 
       <?php endif?>
 
-	  <!-- Divider -->
+    <!-- Divider -->
     <?php if ($_COOKIE['logged_akses'] == 'admin') : ?>
 
       <hr class="sidebar-divider">

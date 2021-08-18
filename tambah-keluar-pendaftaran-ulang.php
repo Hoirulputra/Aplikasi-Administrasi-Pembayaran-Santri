@@ -1,13 +1,5 @@
 <?php
-  require 'cek-sesi.php';
-  if (isset($_COOKIE['logged_akses'])) {
-    if ($_COOKIE['logged_akses'] != 'admin' && $_COOKIE['logged_akses'] != 'bendahara') {
-      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-      echo "Anda tidak berhak mengakses halaman ini <br/>";
-      echo "<a href='${url}'>Kembali</a>";
-      die;
-    } 
-  }
+require 'cek-sesi.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,57 +37,76 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-				</div>
-				<br>
-		<div class="card shadow mb-4">
+    <div class="clearfix">
+          <div class="float-right">
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>
+          
+        </div>
+        <br>
+    
+    <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tambah Pengeluaran</h6>
+              <h4 class="m-0 font-weight-bold text-primary">Tambah Tagihan</h4>
             </div>
             <div class="card-body">
+    
+
 <form action="proses-tambah-keluar-pendaftaran-ulang.php" method="get">
 <div class="form-row">
 <div class="form-group col-md-6">
-<label>Tanggal Pengeluaran</label>
-<input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_pembayaran" class="form-control">   
+<label>Tanggal Tagihan</label>
+<input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_tagihan" class="form-control">   
 </div>
+
 <div class="form-group col-md-6">
-<label>Nominal Uang Pengeluaran</label>
-<input type="number" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
+<label>Nominal Uang Tagihan</label>
+<select class="form-control" name="nominal_tagihan" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Rp.50.000">Rp.50.000</option>
+                       </select>
 </div>
+
 <div class="form-group col-md-6">
 <label>Jenis</label>
-<select name="jenis" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Uang Pendaftaran Ulang">Uang Pendaftaran Ulang</option>
-												<option value="Uang Ujian">Uang Ujian</option>
-												<option value="Lainnya">Lainnya</option>
-											</select>
+<select name="jenis_tagihan" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Uang Pendaftaran Ulang">Uang Pendaftaran Ulang</option>
+                        <option value="Uang Ujian">Uang Ujian</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>
 </div>
+
 <div class="form-group col-md-6">
 <label>Keterangan</label>
-<input type="text" name="ket_pengeluaran" class="form-control" autocomplete="off" required>      
-</div>	
+<select name="ket_tagihan" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Daftar Ulang">Daftar Ulang</option>
+                        <option value="Ujian Semester">Ujian Semester</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>
+      
+</div>
+
+    
         <!-- footer modal -->
-		</div>
+    </div>
         <div class="modal-footer">
-		<button type="submit" class="btn btn-success" >Tambah</button>
-		</div>
-		</form>
-		  
+    <button type="submit" class="btn btn-success" >Tambah</button>
+    </div>
+    </form>
+    
+
+        
             </div>
           </div> 
-			  
-			  
+        
+        
 
 
         </div>
         <!-- /.container-fluid -->
-	
+  
       </div>
       <!-- End of Main Content -->
 

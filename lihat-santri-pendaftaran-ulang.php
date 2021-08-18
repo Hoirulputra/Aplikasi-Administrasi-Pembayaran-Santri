@@ -43,13 +43,13 @@ require 'cek-sesi.php';
         <!-- Begin Page Content -->
         <div class="container-fluid"> 
 <div class="clearfix">
-					<div class="float-right">
+          <div class="float-right">
         
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-				</div>
-				<br>		
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>
+          
+        </div>
+        <br>    
 
 <?php
 $id = $_GET['id']; 
@@ -65,21 +65,21 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <?php 
 }
 //mysql_close($host);
-?>	
+?>  
             <div class="card-body">
               <div class="table-responsive">
-			  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Tanggal Pembayaran</th>
                       <th>Tahun/Semester</th>
                       <th>Uang Pendaftaran Ulang</th>
-					  <th>Uang Ujian</th>
-					  <th>Aksi</th>
+            <th>Uang Ujian</th>
+            <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-				  <?php 
+          <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM pendaftaran_ulang WHERE id_santri='$id'");
 $no = 1;
 while ($data1 = mysqli_fetch_assoc($query)) 
@@ -89,8 +89,8 @@ while ($data1 = mysqli_fetch_assoc($query))
                       <td><?=$data1['tanggal_pembayaran']?></td>
                       <td><?=$data1['tahun_pembayaran']?>/<?=$data1['semester_pembayaran']?></td>
                       <td>Rp. <?php echo number_format($data1['uang_pendaftaran_ulang'], 0, ',', '.'); ?></td>
-					  <td>Rp. <?php echo number_format($data1['uang_ujian'], 0, ',', '.'); ?></td>
-					  <td style="text-align:center;">
+            <td>Rp. <?php echo number_format($data1['uang_ujian'], 0, ',', '.'); ?></td>
+            <td style="text-align:center;">
                     <!-- Button untuk modal -->
 <!-- <a title="Hapus" href="hapus-pendaftaran-ulang.php?id=<?=$data1['id'];?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="fa fa-times-circle btn btn-danger btn-sm"></a> -->
 </td>
@@ -100,11 +100,11 @@ while ($data1 = mysqli_fetch_assoc($query))
 ?>
 </tbody>
 </table>
-			  
-			  </div>
-			  </div>
-			  </div>
-			  
+        
+        </div>
+        </div>
+        </div>
+        
 
 
 

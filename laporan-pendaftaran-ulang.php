@@ -26,15 +26,15 @@ require 'cek-sesi.php';
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 <script>
-		function printContent(el)/*el di sini sebagai perwakilan dari id-id di bawah */{
-			var restorepage = document.body.innerHTML;
-			var printcontent = document.getElementById(el).innerHTML;
-			document.body.innerHTML = printcontent;
-			window.print();/*fungsi untuk mencetak*/
-			document.body.innerHTML = restorepage;
-		}
-	</script>
-	
+    function printContent(el)/*el di sini sebagai perwakilan dari id-id di bawah */{
+      var restorepage = document.body.innerHTML;
+      var printcontent = document.getElementById(el).innerHTML;
+      document.body.innerHTML = printcontent;
+      window.print();/*fungsi untuk mencetak*/
+      document.body.innerHTML = restorepage;
+    }
+  </script>
+  
 </head>
 
 <body id="page-top">
@@ -47,17 +47,17 @@ require 'cek-sesi.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">  
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-					<button onclick="printContent('konten')" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Laporan</button>
-					
-				</div>
-				<br>
-				
-				<div id="konten">
+    <div class="clearfix">
+          <div class="float-right">
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>
+          
+          <button onclick="printContent('konten')" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Laporan</button>
+          
+        </div>
+        <br>
+        
+        <div id="konten">
 
 <?php
 $tgl_mulai=$_POST['tgl_mulai'];
@@ -74,7 +74,7 @@ $tgl_sampai=$_POST['tgl_sampai'];
               <div class="table-responsive">
         
 <?php 
-$query1 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalulang FROM keluar_pendaftaran_ulang WHERE jenis='Uang Pendaftaran Ulang' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query1 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totalulang FROM keluar_pendaftaran_ulang WHERE jenis='Uang Pendaftaran Ulang' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totalulang=0;
 while ($row1= mysqli_fetch_array($query1)) {
 $totalulang += $row1['totalulang']; 
@@ -83,7 +83,7 @@ $totalulang += $row1['totalulang'];
 
 
 <?php 
-$query2 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalujian FROM keluar_pendaftaran_ulang WHERE jenis='Uang Ujian' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query2 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totalujian FROM keluar_pendaftaran_ulang WHERE jenis='Uang Ujian' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totalujian=0;
 while ($row2= mysqli_fetch_array($query2)) {
 $totalujian += $row2['totalujian']; 
@@ -91,7 +91,7 @@ $totalujian += $row2['totalujian'];
 ?>
 
 <?php 
-$query3 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totallain FROM keluar_pendaftaran_ulang WHERE jenis='Lainnya' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query3 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totallain FROM keluar_pendaftaran_ulang WHERE jenis='Lainnya' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totallain=0;
 while ($row3= mysqli_fetch_array($query3)) {
 $totallain += $row3['totallain']; 
@@ -105,7 +105,7 @@ $totalkeluar=$totalulang+$totalujian+$totallain;
 
 <thead>
 <tr>
-<th>Jenis Pengeluaran</th>
+<th>Jenis Tagihan</th>
 <th style="width:20%">Total</th>
 </tr>
 </thead>
@@ -144,7 +144,7 @@ $totalkeluar=$totalulang+$totalujian+$totallain;
 
             <div class="card-body">
               <div class="table-responsive">
-			  
+        
 <?php 
 $query = mysqli_query($koneksi,"SELECT SUM(uang_pendaftaran_ulang) AS total1, SUM(uang_ujian) AS total2 FROM pendaftaran_ulang WHERE tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $total1 = 0;
@@ -156,7 +156,7 @@ $total1 += $row['total1'];
 $total2 += $row['total2'];
 $totalmasuk= $total1+$total2;        
 }
-?>		
+?>    
 
 <table class="table table-bordered" width="100%" cellspacing="0">
 <thead>
@@ -182,13 +182,13 @@ $totalmasuk= $total1+$total2;
 </tr>
 </tbody>
 </table>
-	  
-			  </div>
-			  </div>
-			  </div>
+    
+        </div>
+        </div>
+        </div>
         
         </div>
-		</div>
+    </div>
         <!-- /.container-fluid -->
 
       </div>

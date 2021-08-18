@@ -37,20 +37,21 @@ require 'cek-sesi.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="pendaftaran-ulang.php" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-				</div>
-				<br>
+    <div class="clearfix">
+          <div class="float-right">
+            <a href="pendaftaran-ulang.php" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>
+          
+        </div>
+        <br>
+
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header">
-			<div class="float-left">
+      <div class="float-left">
               <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Daftar Santri Sudah Daftar Ulang</h3>
-			 </div>
+       </div>
 
             </div>
             <div class="card-body">
@@ -62,12 +63,12 @@ require 'cek-sesi.php';
                       <th>Nama Santri</th>
                       <th>Jenis Kelamin</th>
                       <th>Alamat</th>
-					  <th>Keterangan</th>
-					  <th>Aksi</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-				  <?php 
+          <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM santri WHERE status='Lama' AND daftar_ulang='Sudah'");
 $no = 1;
 while ($data = mysqli_fetch_assoc($query)) 
@@ -78,8 +79,8 @@ while ($data = mysqli_fetch_assoc($query))
                       <td><?=$data['nama_santri']?></td>
                       <td><?=$data['jenis_kelamin']?></td>
                       <td><?=$data['alamat']?></td>
-					  <td style="text-align:center;"><span class="btn btn-success btn-sm"><?=$data['daftar_ulang']?></span></td>
-					  <td style="text-align:center;">
+            <td style="text-align:center;"><span class="btn btn-success btn-sm"><?=$data['daftar_ulang']?></span></td>
+            <td style="text-align:center;">
                     <!-- Button untuk modal -->
 <a title="Kembalikan Jadi Belum Bayar" href="#" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal<?php echo $data['id']; ?>">Kembalikan Jadi Belum Bayar</a>
 </td>
@@ -103,33 +104,32 @@ $query_edit = mysqli_query($koneksi,"SELECT * FROM santri WHERE id='$id'");
 //$result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_array($query_edit)) {  
 ?>
-
 <div style="display:none !important">
 <input type="text" class="form-control" name="id" value="<?php echo $row['id']; ?>" readonly>
 <input type="text" name="nama_santri" class="form-control" value="<?php echo $row['nama_santri']; ?>">      
 <?php $jenis=$row['jenis_kelamin']; ?>
-											<select name="jenis_kelamin" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Pria" <?php echo ($jenis == 'Pria') ? "selected": "" ?>>Pria</option>
-												<option value="Wanita" <?php echo ($jenis == 'Wanita') ? "selected": "" ?>>Wanita</option>
-											</select>
+                      <select name="jenis_kelamin" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Pria" <?php echo ($jenis == 'Pria') ? "selected": "" ?>>Pria</option>
+                        <option value="Wanita" <?php echo ($jenis == 'Wanita') ? "selected": "" ?>>Wanita</option>
+                      </select>
 <input type="text" name="alamat" class="form-control" value="<?php echo $row['alamat']; ?>">   
 <input type="text" name="ayah_santri" class="form-control" value="<?php echo $row['ayah_santri']; ?>">
 <input type="text" name="ibu_santri" class="form-control" value="<?php echo $row['ibu_santri']; ?>">
 <input type="text" name="tahun_masuk" class="form-control" value="<?php echo $row['tahun_masuk']; ?>">
 <?php $semester=$row['semester']; ?>
-											<select name="semester" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Ganjil" <?php echo ($semester == 'Ganjil') ? "selected": "" ?>>Ganjil</option>
-												<option value="Genap" <?php echo ($semester == 'Genap') ? "selected": "" ?>>Genap</option>
-											</select>
+                      <select name="semester" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Ganjil" <?php echo ($semester == 'Ganjil') ? "selected": "" ?>>Ganjil</option>
+                        <option value="Genap" <?php echo ($semester == 'Genap') ? "selected": "" ?>>Genap</option>
+                      </select>
 
 <?php $status=$row['status']; ?>
-											<select name="status" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Baru" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
-												<option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
-											</select>
+                      <select name="status" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Baru" <?php echo ($status == 'Baru') ? "selected": "" ?>>Baru</option>
+                        <option value="Lama" <?php echo ($status == 'Lama') ? "selected": "" ?>>Lama</option>
+                      </select>
 <input type="hidden" name="daftar_ulang" value="Belum">
 <input type="hidden" name="uang_bulanan" value="<?php echo $row['uang_bulanan']; ?>">
 </div>
@@ -137,13 +137,15 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <div class="form-group">
 <label>Apakah anda yakin ingin menjadikan santri ini belum bayar ? Pengembalian santri menjadi belum bayar adalah untuk pembayaran uang daftar ulang pada priode berikutnya.</label>
 </div>
+
+
 <div class="modal-footer">  
 <button type="submit" class="btn btn-danger">Kembalikan</button>
 <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
 </div>
 <?php 
 }
-
+//mysql_close($host);
 ?>  
        
 </form>
@@ -162,7 +164,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
               </div>
             </div>
           </div>
-		  
+      
 
         </div>
         <!-- /.container-fluid -->

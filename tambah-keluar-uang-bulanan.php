@@ -1,13 +1,5 @@
 <?php
-  require 'cek-sesi.php';
-  if (isset($_COOKIE['logged_akses'])) {
-    if ($_COOKIE['logged_akses'] != 'admin' && $_COOKIE['logged_akses'] != 'bendahara') {
-      $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-      echo "Anda tidak berhak mengakses halaman ini <br/>";
-      echo "<a href='${url}'>Kembali</a>";
-      die;
-    } 
-  }
+require 'cek-sesi.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +14,7 @@
 
   <title>Admin</title>
   <link href='logo.png' rel='icon' type='image/x-icon'/>
-
+  
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -45,58 +37,78 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-				</div>
-				<br>
-		<div class="card shadow mb-4">
+    <div class="clearfix">
+          <div class="float-right">
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>
+          
+        </div>
+        <br>
+    
+    <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tambah Pengeluaran</h6>
+              <h4 class="m-0 font-weight-bold text-primary">Tambah Tagihan</h4>
             </div>
             <div class="card-body">
+    
+
 <form action="proses-tambah-keluar-uang-bulanan.php" method="get">
 <div class="form-row">
 <div class="form-group col-md-6">
-<label>Tanggal Pengeluaran</label>
-<input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_pembayaran" class="form-control">   
+<label>Tanggal Tagihan</label>
+<input type="date" value="<?=date('Y-m-d');?>" readonly required name="tanggal_tagihan" class="form-control">   
 </div>
+
 <div class="form-group col-md-6">
-<label>Nominal Uang Pengeluaran</label>
-<input type="number" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
+<label>Nominal Uang Tagihan</label>
+<select class="form-control" name="nominal_tagihan" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Rp.500.000">Rp.500.000</option>
+                        <option value="Rp.50.000">Rp.50.000</option>
+                        </select>
 </div>
+
 <div class="form-group col-md-6">
 <label>Jenis</label>
-<select name="jenis" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Uang Makan">Uang Makan</option>
-												<option value="Uang Asrama">Uang Asrama</option>
-												<option value="Uang Listrik">Uang Listrik</option>
-												<option value="Lainnya">Lainnya</option>
-											</select>
+<select name="jenis_tagihan" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Uang Makan">Uang Makan</option>
+                        <option value="Uang Asrama">Uang Asrama</option>
+                        <option value="Uang Listrik">Uang Listrik</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>
 </div>
+
 <div class="form-group col-md-6">
 <label>Keterangan</label>
-<input type="text" name="ket_pengeluaran" class="form-control" autocomplete="off" required>      
+<select name="ket_tagihan" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Makan 2X">Makan 2X</option>
+                        <option value="Kebersihan">Kebersihan</option>
+                        <option value="Listrik">Listrik</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>    
 </div>
+
+    
         <!-- footer modal -->
-		</div>
+    </div>
         <div class="modal-footer">
-		<button type="submit" class="btn btn-success" >Tambah</button>
-		</div>
-		</form>
-			  
+    <button type="submit" class="btn btn-success" >Tambah</button>
+    </div>
+    </form>
+    
+
+        
             </div>
           </div> 
-			  
-			  
+        
+        
 
 
         </div>
         <!-- /.container-fluid -->
-	
+  
       </div>
       <!-- End of Main Content -->
 

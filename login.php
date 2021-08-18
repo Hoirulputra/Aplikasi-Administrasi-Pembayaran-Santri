@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE username = '${username}' && pass = '${password}'");
+    $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE username = '${username}' && password = '${password}'");
 
     $data = mysqli_fetch_assoc($query);
     if ($data != '') {

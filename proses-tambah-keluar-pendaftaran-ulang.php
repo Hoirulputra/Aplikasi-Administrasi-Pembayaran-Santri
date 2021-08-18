@@ -3,13 +3,13 @@
 include('koneksi.php');
 
 
-$tanggal_pembayaran = $_GET['tanggal_pembayaran'];
-$nominal_pengeluaran = $_GET['nominal_pengeluaran'];
-$ket_pengeluaran = $_GET['ket_pengeluaran'];
-$jenis = $_GET['jenis'];
+$tanggal_tagihan = $_GET['tanggal_tagihan'];
+$nominal_tagihan = $_GET['nominal_tagihan'];
+$ket_tagihan = $_GET['ket_tagihan'];
+$jenis_tagihan = $_GET['jenis_tagihan'];
 
 //query update
-$query = mysqli_query($koneksi,"INSERT INTO `keluar_pendaftaran_ulang` (`id`, `tanggal_pembayaran`, `nominal_pengeluaran`, `ket_pengeluaran`, `jenis`) VALUES (null, '$tanggal_pembayaran', '$nominal_pengeluaran', '$ket_pengeluaran', '$jenis')");
+$query = mysqli_query($koneksi,"INSERT INTO `keluar_pendaftaran_ulang` (`id`, `tanggal_tagihan`, `nominal_tagihan`, `ket_tagihan`, `jenis_tagihan`) VALUES (null, '$tanggal_tagihan', '$nominal_tagihan', '$ket_tagihan', '$jenis_tagihan')");
 
 if ($query) {
  echo "<script>alert('Data Berhasil di Tambah')</script>

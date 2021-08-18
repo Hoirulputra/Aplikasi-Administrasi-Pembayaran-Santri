@@ -1,4 +1,4 @@
-	<!-- cek apakah sudah login -->
+<!-- cek apakah sudah login -->
 	<?php 
 	require 'koneksi.php';
 	function urlRedirectWhenLogged($akses) {

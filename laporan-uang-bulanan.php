@@ -26,15 +26,15 @@ require 'cek-sesi.php';
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 <script>
-		function printContent(el)/*el di sini sebagai perwakilan dari id-id di bawah */{
-			var restorepage = document.body.innerHTML;
-			var printcontent = document.getElementById(el).innerHTML;
-			document.body.innerHTML = printcontent;
-			window.print();/*fungsi untuk mencetak*/
-			document.body.innerHTML = restorepage;
-		}
-	</script>
-	
+    function printContent(el)/*el di sini sebagai perwakilan dari id-id di bawah */{
+      var restorepage = document.body.innerHTML;
+      var printcontent = document.getElementById(el).innerHTML;
+      document.body.innerHTML = printcontent;
+      window.print();/*fungsi untuk mencetak*/
+      document.body.innerHTML = restorepage;
+    }
+  </script>
+  
 </head>
 
 <body id="page-top">
@@ -47,14 +47,14 @@ require 'cek-sesi.php';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">  
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>				
-					<button onclick="printContent('konten')" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Laporan</button>					
-				</div>
-				<br>		
-				<div id="konten">				
+    <div class="clearfix">
+          <div class="float-right">
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>        
+          <button onclick="printContent('konten')" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Laporan</button>          
+        </div>
+        <br>    
+        <div id="konten">       
 <?php
 $tgl_mulai=$_POST['tgl_mulai'];
 $tgl_sampai=$_POST['tgl_sampai'];
@@ -67,7 +67,7 @@ $tgl_sampai=$_POST['tgl_sampai'];
               <div class="table-responsive">
         
 <?php 
-$query1 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalmakan FROM keluar_uang_bulanan WHERE jenis='Uang Makan' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query1 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totalmakan FROM keluar_uang_bulanan WHERE jenis='Uang Makan' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totalmakan=0;
 while ($row1= mysqli_fetch_array($query1)) {
 $totalmakan += $row1['totalmakan']; 
@@ -75,7 +75,7 @@ $totalmakan += $row1['totalmakan'];
 ?>
 
 <?php 
-$query2 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalasrama FROM keluar_uang_bulanan WHERE jenis='Uang Asrama' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query2 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totalasrama FROM keluar_uang_bulanan WHERE jenis='Uang Asrama' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totalasrama=0;
 while ($row2= mysqli_fetch_array($query2)) {
 $totalasrama += $row2['totalasrama']; 
@@ -83,7 +83,7 @@ $totalasrama += $row2['totalasrama'];
 ?>
 
 <?php 
-$query3 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totallistrik FROM keluar_uang_bulanan WHERE jenis='Uang Listrik' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query3 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totallistrik FROM keluar_uang_bulanan WHERE jenis='Uang Listrik' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totallistrik=0;
 while ($row3= mysqli_fetch_array($query3)) {
 $totallistrik += $row3['totallistrik']; 
@@ -91,7 +91,7 @@ $totallistrik += $row3['totallistrik'];
 
 ?>
 <?php 
-$query4 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totallain FROM keluar_uang_bulanan WHERE jenis='Lainnya' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query4 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totallain FROM keluar_uang_bulanan WHERE jenis='Lainnya' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totallain=0;
 while ($row4= mysqli_fetch_array($query4)) {
 $totallain += $row4['totallain']; 
@@ -102,7 +102,7 @@ $totalkeluar=$totalmakan+$totalasrama+$totallistrik+$totallain;
 <table class="table table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Jenis Pengeluaran</th>
+<th>Jenis Tagihan</th>
 <th style="width:20%">Total</th>
 </tr>
 </thead>
@@ -143,7 +143,7 @@ $totalkeluar=$totalmakan+$totalasrama+$totallistrik+$totallain;
 
             <div class="card-body">
               <div class="table-responsive">
-			  
+        
 <?php 
 $query = mysqli_query($koneksi,"SELECT SUM(uang_makan) AS total1, SUM(uang_asrama) AS total2, SUM(uang_listrik) AS total3 FROM uang_bulanan WHERE tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $total1 = 0;
@@ -156,7 +156,7 @@ $total2 += $row['total2'];
 $total3 += $row['total3'];
 $totalmasuk= $total1+$total2+$total3;        
 }
-?>		
+?>    
 
 <table class="table table-bordered" width="100%" cellspacing="0">
 <thead>
@@ -189,12 +189,12 @@ $totalmasuk= $total1+$total2+$total3;
 
 </tbody>
 </table>
-	  
-			  </div>
-			  </div>
-			  </div>
-			  
-			 
+    
+        </div>
+        </div>
+        </div>
+        
+       
         </div></div>
         <!-- /.container-fluid -->
 

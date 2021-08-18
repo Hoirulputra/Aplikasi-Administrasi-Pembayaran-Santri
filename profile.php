@@ -84,7 +84,7 @@ if (isset($_COOKIE['logged_akses'])) {
                     <td><?= $data['id_admin'] ?></td>
                     <td><?= $data['nama'] ?></td>
                     <td><?= $data['username'] ?></td>
-                    <td><?= $data['pass'] ?></td>
+                    <td><?= $data['password'] ?></td>
                     <td><?= $data['hak_akses'] ?></td>
                     <td style="text-align:center;">
                       <!-- Button untuk modal -->
@@ -130,7 +130,7 @@ if (isset($_COOKIE['logged_akses'])) {
 
                               <div class="form-group">
                                 <label>Password</label>
-                                <input type="text" name="pass" class="form-control" value="<?php echo $row['pass']; ?>">
+                                <input type="text" name="password" class="form-control" value="<?php echo $row['password']; ?>">
                               </div>
 
                               <div class="modal-footer">
@@ -172,7 +172,7 @@ if (isset($_COOKIE['logged_akses'])) {
                           Username
                           <input type="text" class="form-control" name="username">
                           Password
-                          <input type="password" class="form-control" name="pass">
+                          <input type="password" class="form-control" name="password">
                           Hak Akses
                           <select name="hak_akses" class="form-control">
                             <option value="admin">Admin</option>

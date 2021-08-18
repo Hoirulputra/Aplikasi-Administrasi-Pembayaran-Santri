@@ -43,13 +43,13 @@ require 'cek-sesi.php';
         <!-- Begin Page Content -->
         <div class="container-fluid"> 
 <div class="clearfix">
-					<div class="float-right">
+          <div class="float-right">
          
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-				</div>
-				<br>		
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>
+          
+        </div>
+        <br>    
 
 <?php
 $id = $_GET['id']; 
@@ -65,23 +65,23 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <?php 
 }
 //mysql_close($host);
-?>	
+?>  
             <div class="card-body">
               <div class="table-responsive">
-			  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Tanggal Pembayaran</th>
                       <th>Untuk Uang Bulan</th>
-					  <th>Tahun</th>
-					  <th>Uang Makan</th>
-					  <th>Uang Asrama</th>
+            <th>Tahun</th>
+            <th>Uang Makan</th>
+            <th>Uang Asrama</th>
                       <th>Uang Listrik</th>
-					  <th>Aksi</th>
+            <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-				  <?php 
+          <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM uang_bulanan WHERE id_santri='$id'");
 $no = 1;
 while ($data1 = mysqli_fetch_assoc($query)) 
@@ -90,11 +90,11 @@ while ($data1 = mysqli_fetch_assoc($query))
                     <tr>
                       <td><?=$data1['tanggal_pembayaran']?></td>
                       <td><?=$data1['bulan_pembayaran']?></td>
-					  <td><?=$data1['tahun_pembayaran']?></td>
-					  <td>Rp. <?php echo number_format($data1['uang_makan'], 0, ',', '.'); ?></td>
-					  <td>Rp. <?php echo number_format($data1['uang_asrama'], 0, ',', '.'); ?></td>
-					  <td>Rp. <?php echo number_format($data1['uang_listrik'], 0, ',', '.'); ?></td>
-					  <td style="text-align:center;">
+            <td><?=$data1['tahun_pembayaran']?></td>
+            <td>Rp. <?php echo number_format($data1['uang_makan'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_asrama'], 0, ',', '.'); ?></td>
+            <td>Rp. <?php echo number_format($data1['uang_listrik'], 0, ',', '.'); ?></td>
+            <td style="text-align:center;">
                     <!-- Button untuk modal -->
 <!-- <a title="Hapus" href="hapus-uang-bulanan.php?id=<?=$data1['id'];?>" Onclick="confirm('Anda Yakin Ingin Menghapus?')" class="fa fa-times-circle btn btn-danger btn-sm"></a> -->
 </td>
@@ -104,11 +104,11 @@ while ($data1 = mysqli_fetch_assoc($query))
 ?>
 </tbody>
 </table>
-			  
-			  </div>
-			  </div>
-			  </div>
-			  
+        
+        </div>
+        </div>
+        </div>
+        
 
 
 

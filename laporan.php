@@ -41,95 +41,89 @@
       <!-- Main Content -->
       <div id="content">
 
-<?php require 'navbar.php'; ?>
-
+<?php require 'navbar.php'; ?>                
+  
         <!-- Begin Page Content -->
         <div class="container-fluid">
-		
+    
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Laporan Pembayaran Santri</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Laporan Keuangan Pada Aplikasi Administrasi Pembayaran Santri PP. Hidayatul Mubtadi'in Turen </h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                
-				<ul class="nav nav-tabs">
-	<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#harian">Pendaftaran Baru</a></li>
-	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#periode">Pendaftaran Ulang</a></li>
-	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#periode2">Uang Bulanan</a></li>
+              <div class="table-responsive">    
+        <ul class="nav nav-tabs">
+  <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#harian">Pendaftaran Baru</a></li>
+  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#periode">Pendaftaran Ulang</a></li>
+  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#periode2">Uang Bulanan</a></li>
 </ul>
 
 <div id="myTabContent" class="tab-content">
-	<div class="tab-pane fade active show" id="harian"><br />
-		<form action="laporan-pendaftaran-baru.php" method="POST">
-    		<div class="form-group">
-    			<label for="tgl_mulai">Mulai</label>
-        		<input class="form-control" type="date" name="tgl_mulai" id="tgl_mulai" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" prequired="">
-        	</div>
-        	<div class="form-group">
-        		<label for="tgl_sampai">Sampai</label>
-        		<input class="form-control" type="date" name="tgl_sampai" id="tgl_sampai" value="<?=date('Y-m-d');?>" required="">
-    		</div>
-    		<button type="submit" class="btn btn-primary">Lihat Laporan</button>
-    	</form>
-	</div>
-	<div class="tab-pane fade" id="periode"><br />
-		<form action="laporan-pendaftaran-ulang.php" method="POST">
-    		<div class="form-group">
-    			<label for="tgl_mulai">Mulai</label>
-        		<input class="form-control" type="date" name="tgl_mulai" id="tgl_mulai" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" prequired="">
-        	</div>
-        	<div class="form-group">
-        		<label for="tgl_sampai">Sampai</label>
-        		<input class="form-control" type="date" name="tgl_sampai" id="tgl_sampai" value="<?=date('Y-m-d');?>" required="">
-    		</div>
-    		<button type="submit" class="btn btn-primary">Lihat Laporan</button>
-    	</form>
-	</div>
-	
-	<div class="tab-pane fade" id="periode2"><br />
-		<form action="laporan-uang-bulanan.php" method="POST">
-    		<div class="form-group">
-    			<label for="tgl_mulai">Mulai</label>
-        		<input class="form-control" type="date" name="tgl_mulai" id="tgl_mulai" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" prequired="">
-        	</div>
-        	<div class="form-group">
-        		<label for="tgl_sampai">Sampai</label>
-        		<input class="form-control" type="date" name="tgl_sampai" id="tgl_sampai" value="<?=date('Y-m-d');?>" required="">
-    		</div>
-    		<button type="submit" class="btn btn-primary">Lihat Laporan</button>
-    	</form>
-	</div>
-	
-</div>
-	
+  <div class="tab-pane fade active show" id="harian"><br />
+    <form action="laporan-pendaftaran-baru.php" method="POST">
+        <div class="form-group">
+          <label for="tgl_mulai">Mulai</label>
+            <input class="form-control" type="date" name="tgl_mulai" id="tgl_mulai" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" prequired="">
+          </div>
+          <div class="form-group">
+            <label for="tgl_sampai">Sampai</label>
+            <input class="form-control" type="date" name="tgl_sampai" id="tgl_sampai" value="<?=date('Y-m-d');?>" required="">
+        </div>
+        <button type="submit" class="btn btn-primary">Lihat Laporan</button>
+      </form>
+  </div>
+  <div class="tab-pane fade" id="periode"><br />
+    <form action="laporan-pendaftaran-ulang.php" method="POST">
+        <div class="form-group">
+          <label for="tgl_mulai">Mulai</label>
+            <input class="form-control" type="date" name="tgl_mulai" id="tgl_mulai" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" prequired="">
+          </div>
+          <div class="form-group">
+            <label for="tgl_sampai">Sampai</label>
+            <input class="form-control" type="date" name="tgl_sampai" id="tgl_sampai" value="<?=date('Y-m-d');?>" required="">
+        </div>
+        <button type="submit" class="btn btn-primary">Lihat Laporan</button>
+      </form>
+  </div>
+  
+  <div class="tab-pane fade" id="periode2"><br />
+    <form action="laporan-uang-bulanan.php" method="POST">
+        <div class="form-group">
+          <label for="tgl_mulai">Mulai</label>
+            <input class="form-control" type="date" name="tgl_mulai" id="tgl_mulai" value="<?php $bulan = mktime(0,0,0, date('m')-1, date('d'), date('Y')); echo date('Y-m-d', $bulan);?>" prequired="">
+          </div>
+          <div class="form-group">
+            <label for="tgl_sampai">Sampai</label>
+            <input class="form-control" type="date" name="tgl_sampai" id="tgl_sampai" value="<?=date('Y-m-d');?>" required="">
+        </div>
+        <button type="submit" class="btn btn-primary">Lihat Laporan</button>
+      </form>
+  </div>
+</div>  
       </div>
-<br>
-                  
-             <!-- DataTales Example -->
+      <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header">
-      <div class="float-left"> 
-        <div class='alert alert-info alert-dismissible fade show text-left'> <button type="submit" class="btn btn-primary">Laporan Pembayaran Santri<select name="id_santri" class="form-control"></button>
-                              <?php
-                              $query = mysqli_query($koneksi, "SELECT * FROM santri ORDER BY nama_santri ASC");
-                              while ($santri = mysqli_fetch_assoc($query)) {
-                              ?>
-                                <option value="<?= $santri['id'] ?>"><?= $santri['nama_santri'] ?></option>
-                              <?php
-                              }
-                              ?>
-                            </select> <a style="margin:5px" href="pembayaran-santri.php" class="btn btn-success btn-sm">Lihat Laporan</a>
+      <div class="float-right"> 
+        <div class='alert alert-info alert-dismissible fade show text-right'> <button type="submit" class="btn btn-primary">Laporan Pembayaran Santri<form action="pembayaran-santri.php" method="get">
+
+            <select name="id_santri" class="form-control"></button>
+            <?php
+              $query = mysqli_query($koneksi, "SELECT * FROM santri ORDER BY nama_santri ASC");
+              while ($santri = mysqli_fetch_assoc($query)) {
+                ?>
+              <option value="<?= $santri['id'] ?>"><?= $santri['nama_santri'] ?></option>
+              <?php
+              }
+              ?>
+            </select> 
+            <button type="submit" style="margin:5px" class="btn btn-success btn-sm">Lihat Laporan</button>
+          </form>
         <a class="fa fa-eye btn btn-primary btn-sm"></a>
        </div>
-      
         </div>   
-            </div>                 
-        
-      </div>
-      </div>
-  
+            </div> 
 
       <!-- End of Main Content -->
 

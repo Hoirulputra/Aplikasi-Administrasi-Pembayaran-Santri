@@ -13,7 +13,7 @@ require 'cek-sesi.php';
   <meta name="author" content="">
 
   <title>Admin</title>
-  <link href='logo.jpg' rel='icon' type='image/x-icon'/>
+  <link href='logo.png' rel='icon' type='image/x-icon'/>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,79 +40,53 @@ require 'cek-sesi.php';
     <div class="clearfix">
           <div class="float-right">
             <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-          </div>
-          
+          </div> 
         </div>
-        <br>
-    
+        <br>    
 <?php
 $id = $_GET['id']; 
 $query_edit = mysqli_query($koneksi,"SELECT * FROM santri WHERE id='$id'");
 //$result = mysqli_query($conn, $query);
 while ($row = mysqli_fetch_array($query_edit)) {  
-?>
-
-      
+?>   
      <!-- DataTales Example -->
           <div class="card shadow mb-4">
-
             <div class="card-header">
       <div class="float-left">
               <h2 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Data <b> <?php echo $row['nama_santri']; ?></b></h2>
         
        </div>
-
         </div>
             </div>
-            <div class="card-body">
-               
+            <div class="card-body">    
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> 
                 <tbody>
                   <tr>
-
-                      <th><b>Nomor Induk Santri</b></th>
-                      
-                     <th><b>Nama</b></th>
-                     
-                      <th><b>Jenis Kelamin</b></th>
-                      
-                       <th><b>Alamat</b></th>
-                                     
-                       <th><b>Nama Ayah</b></th>
-                      
-                       <th><b>Nama Ibu</b></th>
-                       
-                        <th><b>Tahun/Semester Masuk</b></th>
-                       
-                      <th><b>Status Santri</b></th>
-                     </tr>
-
-                       <tr>
-                     
-                      <td><?php echo $row['id']; ?></td>
-                    
-                     <td><?php echo $row['nama_santri']; ?></td>
-                      
-                      <td><?php echo $row['jenis_kelamin']; ?></td>
-                       
-                       <td><?php echo $row['alamat']; ?></td>              
-                      
-                       <td><?php echo $row['ayah_santri']; ?></td>
-                      
-                       <td><?php echo $row['ibu_santri']; ?></td>
-                        
-                       <td><?php echo $row['tahun_masuk']; ?>/<?php echo $row['semester']; ?></td>
-                      
-                       <td><?php echo $row['status']; ?></td>
+                      <th><b>Nomor Induk Santri</b></th>        
+                     <th><b>Nama</b></th>        
+                      <th><b>Jenis Kelamin</b></th>         
+                       <th><b>Alamat</b></th>                        
+                       <th><b>Nama Ayah</b></th>         
+                       <th><b>Nama Ibu</b></th>           
+                        <th><b>Tahun/Semester Masuk</b></th>           
+                       <th><b>Status Santri</b></th>
                       </tr>
-    
+ 
+                       <tr>         
+                      <td><?php echo $row['id']; ?></td>                  
+                     <td><?php echo $row['nama_santri']; ?></td>                      
+                      <td><?php echo $row['jenis_kelamin']; ?></td>                       
+                       <td><?php echo $row['alamat']; ?></td>                                   
+                       <td><?php echo $row['ayah_santri']; ?></td>                     
+                       <td><?php echo $row['ibu_santri']; ?></td>                       
+                       <td><?php echo $row['tahun_masuk']; ?>/<?php echo $row['semester']; ?></td>                     
+                       <td><?php echo $row['status']; ?></td>
+                      </tr>   
                 </tbody>
               </table>
           </div>
         </div>
-  
 
 <div class="card shadow mb-4">
             <div class="card-body">

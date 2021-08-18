@@ -47,16 +47,16 @@ require 'cek-sesi.php';
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header">
-			<div class="float-left">
-              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Daftar Pengeluaran Pendaftaran Santri Baru</h3>
-			  
+      <div class="float-left">
+              <h3 style="margin-top: 5px !important;" class="m-0 font-weight-bold text-primary">Daftar Tagihan Santri Baru</h3>
+        
        </div>
-			 <div class="float-right">
+       <div class="float-right">
         <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
-			  <a style="margin:5px" href="tambah-keluar-pendaftaran-baru.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data Pengeluaran</a>
+        <a style="margin:5px" href="tambah-keluar-pendaftaran-baru.php" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Tagihan</a>
         <?php endif; ?>
 
-			  </div>
+        </div>
             </div>
             <div class="card-body">
                
@@ -66,20 +66,20 @@ require 'cek-sesi.php';
                   <thead>
                     <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
                     <tr>
-                      <th>Tanggal Pengeluaran</th>
+                      <th>Tanggal Tagihan</th>
                       <?php endif; ?>
                      
-					           <th>Jenis</th>
+                     <th>Jenis</th>
                       <th>Keterangan</th>
                        <th>Nominal</th>
             <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>                  
-					  <th>Aksi </th>
+            <th>Aksi </th>
              <?php endif; ?>
                       </tr>
                       </thead>
                       <tbody>
 
-				  <?php 
+          <?php 
 $query = mysqli_query($koneksi,"SELECT * FROM keluar_pendaftaran_baru");
 $no = 1;
 while ($data = mysqli_fetch_assoc($query)) 
@@ -88,12 +88,12 @@ while ($data = mysqli_fetch_assoc($query))
 
                     <tr>
                        <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>   
-                      <td><?=$data['tanggal_pembayaran']?></td>
+                      <td><?=$data['tanggal_tagihan']?></td>
                        <?php endif; ?>
-					           <td><?=$data['jenis']?></td>
-                      <td><?=$data['ket_pengeluaran']?></td>
-                      <td>Rp. <?php echo number_format($data['nominal_pengeluaran'], 0, ',', '.'); ?></td>
-					           <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
+                     <td><?=$data['jenis_tagihan']?></td>
+                      <td><?=$data['ket_tagihan']?></td>
+                      <td><?=$data['nominal_tagihan']?></td>
+                     <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
                      <td style="width:15%;text-align:center;">
                     <?php endif; ?>
 <!-- Button untuk modal -->
@@ -112,7 +112,7 @@ while ($data = mysqli_fetch_assoc($query))
 <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title">Ubah Data Pengeluaran</h4>
+<h4 class="modal-title">Ubah Data Tagihan</h4>
 <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body">
@@ -129,33 +129,51 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <input type="hidden" value="<?php echo $row['id']; ?>" class="form-control" name="id" readonly required>
 
 <div class="form-group">
-<label>Tanggal Pengeluaran</label>
-<input type="date" value="<?php echo $row['tanggal_pembayaran']; ?>" readonly required name="tanggal_pembayaran"  value="<?php echo $row['tanggal_pembayaran']; ?>" class="form-control">   
+<label>Tanggal Tagihan</label>
+<input type="date" value="<?php echo $row['tanggal_tagihan']; ?>" readonly required name="tanggal_tagihan"  value="<?php echo $row['tanggal_tagihan']; ?>" class="form-control">   
 </div>
 
 <div class="form-group">
 <label>Jenis</label>
 
-											<?php $jenis=$row['jenis']; ?>
-											<select name="jenis" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Uang Pendaftaran Baru" <?php echo ($jenis == 'Uang Pendaftaran Baru') ? "selected": "" ?>>Uang Pendaftaran Baru</option>
-												<option value="Uang Sewa Lemari" <?php echo ($jenis == 'Uang Sewa Lemari') ? "selected": "" ?>>Uang Sewa Lemari</option>
-												<option value="Uang Seragam Pondok" <?php echo ($jenis == 'Uang Seragam Pondok') ? "selected": "" ?>>Uang Seragam Pondok</option>
-												<option value="Uang Pembagunan" <?php echo ($jenis == 'Uang Pembagunan') ? "selected": "" ?>>Uang Pembangunan</option>
-												<option value="Uang Ujian" <?php echo ($jenis == 'Uang Ujian') ? "selected": "" ?>>Uang Ujian</option>
-												<option value="Lainnya" <?php echo ($jenis == 'Lainnya') ? "selected": "" ?>>Lainnya</option>
-											</select>
+                      <?php $jenis=$row['jenis_tagihan']; ?>
+                      <select name="jenis_tagihan" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Uang Pendaftaran Baru" <?php echo ($jenis == 'Uang Pendaftaran Baru') ? "selected": "" ?>>Uang Pendaftaran Baru</option>
+                        <option value="Uang Sewa Lemari" <?php echo ($jenis == 'Uang Sewa Lemari') ? "selected": "" ?>>Uang Sewa Lemari</option>
+                        <option value="Uang Seragam Pondok" <?php echo ($jenis == 'Uang Seragam Pondok') ? "selected": "" ?>>Uang Seragam Pondok</option>
+                        <option value="Uang Pembagunan" <?php echo ($jenis == 'Uang Pembagunan') ? "selected": "" ?>>Uang Pembangunan</option>
+                        <option value="Uang Ujian" <?php echo ($jenis == 'Uang Ujian') ? "selected": "" ?>>Uang Ujian</option>
+                        <option value="Lainnya" <?php echo ($jenis == 'Lainnya') ? "selected": "" ?>>Lainnya</option>
+                      </select>
 </div>
 
 <div class="form-group">
 <label>Keterangan</label>
-<input type="text" value="<?php echo $row['ket_pengeluaran']; ?>" name="ket_pengeluaran" class="form-control" autocomplete="off" required>      
+
+                      <?php echo $row['ket_tagihan']; ?>
+                       <select name="ket_tagihan" class="form-control" required> 
+                        <option value="Formulir Pendaftaran">Formulir Pendaftaran</option>
+                        <option value="Sewa 1 Lemari">Sewa 1 Lemari</option>
+                        <option value="Beli 2 Seragam Pondok">Beli 2 Seragam Pondok</option>
+                        <option value="SPP">SPP</option>
+                        <option value="Ujian Test Masuk">Ujian Test Masuk</option>
+                      </select>
+
+
+     
 </div>
 
 <div class="form-group">
-<label>Nominal Uang Pengeluaran</label>
-<input type="number" value="<?php echo $row['nominal_pengeluaran']; ?>" class="form-control" name="nominal_pengeluaran" autocomplete="off" required>
+<label>Nominal Uang</label>
+
+                      <?php echo $data['nominal_tagihan']; ?>
+                        <select name="nominal_tagihan" class="form-control"  required>                 
+                        <option value="Rp.500.000">Rp.500.000</option>
+                        <option value="Rp.300.000">Rp.300.000</option>
+                        <option value="Rp.100.000">Rp.100.000</option>
+                        <option value="Rp.50.000">Rp.50.000</option>
+                       </select>
 </div>
 
 <div class="modal-footer">  
@@ -165,7 +183,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
 <?php endif; ?>
 <?php 
 }
-?> 	
+?>  
 </form>
 </div>
 </div>
@@ -181,7 +199,7 @@ while ($row = mysqli_fetch_array($query_edit)) {
               </div>
             </div>
           </div>
-		  
+      
 
         </div>
         <!-- /.container-fluid -->

@@ -34,15 +34,15 @@
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 <script>
-		function printContent(el)/*el di sini sebagai perwakilan dari id-id di bawah */{
-			var restorepage = document.body.innerHTML;
-			var printcontent = document.getElementById(el).innerHTML;
-			document.body.innerHTML = printcontent;
-			window.print();/*fungsi untuk mencetak*/
-			document.body.innerHTML = restorepage;
-		}
-	</script>
-	
+    function printContent(el)/*el di sini sebagai perwakilan dari id-id di bawah */{
+      var restorepage = document.body.innerHTML;
+      var printcontent = document.getElementById(el).innerHTML;
+      document.body.innerHTML = printcontent;
+      window.print();/*fungsi untuk mencetak*/
+      document.body.innerHTML = restorepage;
+    }
+  </script>
+  
 </head>
 
 <body id="page-top">
@@ -55,15 +55,20 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">  
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					<button onclick="printContent('konten')" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Laporan</button>
-				</div>
+    <div class="clearfix">
+          <div class="float-right">
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>
+         <form method="post" action="make-pdf.php">
+          <input type="hidden" name="mulai" value="<?= $_POST['tgl_mulai'] ?>">
+          <input type="hidden" name="sampai" value="<?= $_POST['tgl_sampai'] ?>">
+          <input type="submit" name="create_pdf" class="btn btn-danger" value="Create PDF" />
+        </form>
 
-				<br>
-				<div id="konten">
+      </div>
+
+        <br>
+        <div id="konten">
 
 <?php
 $tgl_mulai=$_POST['tgl_mulai'];
@@ -79,7 +84,7 @@ $tgl_sampai=$_POST['tgl_sampai'];
               <div class="table-responsive">
         
 <?php 
-$query1 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalseragam FROM keluar_pendaftaran_baru WHERE jenis='Uang Seragam Pondok' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query1 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totalseragam FROM keluar_pendaftaran_baru WHERE jenis='Uang Seragam Pondok' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totalseragam=0;
 while ($row1= mysqli_fetch_array($query1)) {
 $totalseragam += $row1['totalseragam']; 
@@ -87,7 +92,7 @@ $totalseragam += $row1['totalseragam'];
 ?>
 
 <?php 
-$query2 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totallemari FROM keluar_pendaftaran_baru WHERE jenis='Uang Sewa Lemari' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query2 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totallemari FROM keluar_pendaftaran_baru WHERE jenis='Uang Sewa Lemari' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totallemari=0;
 while ($row2= mysqli_fetch_array($query2)) {
 $totallemari += $row2['totallemari']; 
@@ -95,7 +100,7 @@ $totallemari += $row2['totallemari'];
 ?>
 
 <?php 
-$query3 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalbaru FROM keluar_pendaftaran_baru WHERE jenis='Uang Pendaftaran Baru' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query3 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totalbaru FROM keluar_pendaftaran_baru WHERE jenis='Uang Pendaftaran Baru' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totalbaru=0;
 while ($row3= mysqli_fetch_array($query3)) {
 $totalbaru += $row3['totalbaru']; 
@@ -103,7 +108,7 @@ $totalbaru += $row3['totalbaru'];
 ?>
 
 <?php 
-$query4 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalbiayapembagunan FROM keluar_pendaftaran_baru WHERE jenis='Uang Pembangunan' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query4 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totalbiayapembagunan FROM keluar_pendaftaran_baru WHERE jenis='Uang Pembangunan' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totalbiayapembagunan=0;
 while ($row4= mysqli_fetch_array($query4)) {
 $totalbiayapembagunan += $row4['totalbiayapembagunan']; 
@@ -111,7 +116,7 @@ $totalbiayapembagunan += $row4['totalbiayapembagunan'];
 ?>
 
 <?php 
-$query5 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totalujian FROM keluar_pendaftaran_baru WHERE jenis='Uang Ujian' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query5 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totalujian FROM keluar_pendaftaran_baru WHERE jenis='Uang Ujian' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totalujian=0;
 while ($row5= mysqli_fetch_array($query5)) {
 $totalujian += $row5['totalujian']; 
@@ -119,7 +124,7 @@ $totalujian += $row5['totalujian'];
 ?>
 
 <?php 
-$query6 = mysqli_query($koneksi,"SELECT SUM(nominal_pengeluaran) AS totallain FROM keluar_pendaftaran_baru WHERE jenis='Lainnya' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
+$query6 = mysqli_query($koneksi,"SELECT SUM(nominal_tagihan) AS totallain FROM keluar_pendaftaran_baru WHERE jenis='Lainnya' AND tanggal_pembayaran between '$tgl_mulai' and '$tgl_sampai'");
 $totallain=0;
 while ($row6= mysqli_fetch_array($query6)) {
 $totallain += $row6['totallain']; 
@@ -131,7 +136,7 @@ $totalkeluar=$totalseragam+$totallemari+$totalbaru+$totalbiayapembagunan+$totalu
 <table class="table table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Jenis Pengeluaran</th>
+<th>Jenis Tagihan</th>
 <th style="width:20%">Total</th>
 </tr>
 </thead>

@@ -45,20 +45,20 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-		<div class="clearfix">
-					<div class="float-right">
-						<a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
-					</div>
-					
-				</div>
-				<br>
-		
-		<div class="card shadow mb-4">
+    <div class="clearfix">
+          <div class="float-right">
+            <a href="javascript:history.back()" class="btn btn-secondary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+          </div>
+          
+        </div>
+        <br>
+    
+    <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Tambah Data Santri</h6>
             </div>
             <div class="card-body">
-		
+    
 <form action="proses-tambah-santri.php" method="get">
 
 <input type="hidden" name="daftar_ulang" value="Belum">
@@ -77,12 +77,12 @@
 
 <div class="form-group col-md-4">
 <label>Jenis Kelamin</label>
-											
-											<select name="jenis_kelamin" class="form-control" required required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Pria">Pria</option>
-												<option value="Wanita">Wanita</option>
-											</select>
+                      
+                      <select name="jenis_kelamin" class="form-control" required required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Pria">Pria</option>
+                        <option value="Wanita">Wanita</option>
+                      </select>
 </div>
 
 <div class="form-group col-md-4">
@@ -105,39 +105,39 @@
 <div class="form-group col-md-4">
 <label>Semester</label>
 
-											
-											<select name="semester" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Ganjil">Ganjil</option>
-												<option value="Genap">Genap</option>
-											</select>
+                      
+                      <select name="semester" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Ganjil">Ganjil</option>
+                        <option value="Genap">Genap</option>
+                      </select>
 </div>
 <div class="form-group col-md-4">
 <label>Status Santri</label>
 
-											
-											<select name="status" class="form-control" required>
-												<option value="">-- Silahkan Pilih --</option>
-												<option value="Baru">Baru</option>
-												<option value="Lama">Lama</option>
-											</select>
+                      
+                      <select name="status" class="form-control" required>
+                        <option value="">-- Silahkan Pilih --</option>
+                        <option value="Baru">Baru</option>
+                        <option value="Lama">Lama</option>
+                      </select>
 </div>
 </div>
         <!-- footer modal -->
-		</div>
+    </div>
         <div class="modal-footer">
-		<button type="submit" class="btn btn-success" >Tambah</button>
-		</form>
-			  
+    <button type="submit" class="btn btn-success" >Tambah</button>
+    </form>
+        
             </div>
           </div> 
-			  
-			  
+        
+        
 
 
         </div>
         <!-- /.container-fluid -->
-	
+  
       </div>
       <!-- End of Main Content -->
 

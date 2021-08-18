@@ -1,15 +1,8 @@
 <?php
 require 'cek-sesi.php';
-// if (isset($_COOKIE['logged_akses'])) {
-//   if ($_COOKIE['logged_akses'] != 'santri') {
-//     $url = urlRedirectWhenLogged($_COOKIE['logged_akses']);
-//     echo "Anda tidak berhak mengakses halaman ini <br/>";
-//     echo "<a href='${url}'>Kembali</a>";
-//     die;
-//   }
   $query = mysqli_query($koneksi, "SELECT * FROM santri WHERE id = '" . $logged_user['id_santri'] . "'");
   $santri = mysqli_fetch_assoc($query);
-// // }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +13,7 @@ require 'cek-sesi.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  
  <?php if ($_COOKIE['logged_akses'] == 'admin' || $_COOKIE['logged_akses'] == 'bendahara') : ?>
     <title>Admin</title>
   <?php endif; ?>
